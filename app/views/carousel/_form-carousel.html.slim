@@ -1,0 +1,16 @@
+#carouselExampleControls.carousel.slide.carousel-dark data-bs-ride="carousel" 
+  .carousel-inner
+    .carousel-item.active
+      = image_tag('1.jpg', class:'d-block w-100', alt: 'image_1', resize: "300x300")
+    .carousel-item
+      = image_tag('2.jpg', class:'d-block w-100', alt: 'image_2', resize: "300x300")
+    .carousel-item
+      = image_tag('3.jpg', class:'d-block w-100', alt: 'image_3', resize: "300x300")
+    .carousel-item
+      = image_tag('4.jpg', class:'d-block w-100', alt: 'image_4', resize: "300x300")
+  button.carousel-control-prev data-bs-slide="prev" data-bs-target="#carouselExampleControls" type="button" 
+    span.carousel-control-prev-icon aria-hidden="true" 
+    span.visually-hidden Previous
+  button.carousel-control-next data-bs-slide="next" data-bs-target="#carouselExampleControls" type="button" 
+    span.carousel-control-next-icon aria-hidden="true" 
+    span.visually-hidden Next

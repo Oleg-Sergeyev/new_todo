@@ -1,0 +1,19 @@
+h2 = t("label.log_in")
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .field id='div_input_email'
+    = f.label :email
+    br
+    = f.email_field :email, autofocus: true, autocomplete: "email", id:"input_email"
+    br
+    = f.label " ", id:"label_wrong_email"
+  .field
+    = f.label :password
+    br
+    = f.password_field :password, autocomplete: "current-password"
+  - if devise_mapping.rememberable?
+    .field
+      = f.check_box :remember_me
+      = f.label :remember_me
+  .actions
+    = f.submit t("label.log_in"), id:"submit_log_in", class:"submit", disabled: true
+= render "devise/shared/links"

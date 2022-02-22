@@ -1,0 +1,83 @@
+en:
+  time:
+    formats:
+      default: '%m/%d/%Y, %H:%M'
+  label:
+    log_in:           Authorization
+    log_out:          Logout
+    come_in:          Come in
+    edit_profile:     Edit profile
+    registration:     Registration
+    role:             Role
+    create_new_event: Create new event
+    list_events:      List events
+    period:           Period
+    display_by:       Display by
+    submit:           Submit
+    back:             Back
+    edit:             Edit
+    update:           Update
+    new_item:         New item
+    localization:     Localization
+  messages:
+    questions:
+      are_you_sure?:  Are you sure?  
+  top-menu:
+    home:    Home
+    stats:   Stats
+    events:  Events
+    admin:   Admin
+    about:   Abiut
+  activerecord:
+    models:
+      user:    Users
+      post:    Messages
+      event:   Event
+      item:    Item
+      items:   Items
+      role:    Role 
+      seo:     SEO
+      comment: Comments
+      stats:   Stats  
+    attributes:
+      user:
+        password:              Password
+        password_confirmation: Password confirmation
+        email:                 Email
+        name:                  User name
+        active:                Active status
+        created_at:            Created at
+        updated_at:            Updated at
+        events_ffd_count:      Completed events
+        events_unffd_count:    Uncompleted events
+        events_count:          Events count
+        items_count:           Items count
+        items_ffd_count:       Completed items
+        items_unffd_count:     Uncompleted events
+      role:
+        name: Role name
+        code: Pseudomin
+      item:
+        name:         Item name
+        done:         Execution status
+        finished_at:  Finished at
+        editing_item: Editing item
+      event:
+        name:         Event name
+        content:      Event content
+        done:         Execution status
+        finished_at:  Finished at
+        list_events:  List events
+        list_items:   List items
+        not_finished: Not finished
+        finished:     Finished
+        many:         events
+        one:          event
+        others:       events
+      comment:
+        content:    Comment content
+        created_at: Created at
+        updated_at: Updated at
+
+
+      

@@ -1,0 +1,19 @@
+
+div class = 'main-container mb-3' style ='margin: 5px; padding: 5px; padding-bottom: 40px;'
+  div style ='margin-left: 15px;'
+    h1 =t('label.list_events')
+    p
+  div id = 'date' class = 'mb-3' style ='margin: 0 10px 0 15px;'
+    = render 'form_journal_panel'
+  / div id = 'date_view' class = 'mb-3' style ='margin-left: 15px;'
+  /   b ="#{t('label.period')}: "
+  /   b =l(@start_date)
+  /   b  - 
+  /   b =l(@final_date)
+  div id = 'paginate' class = 'events-paginate mb-3' style ='margin-left: 15px;'
+    = paginate @events  
+  == render 'table_events'
+  div id = 'date_view' class = 'mb-3' style ='margin-left: 15px;'
+    = link_to t('label.create_new_event'), new_event_path, class: 'btn btn-primary'
+  div id = 'paginate' class = 'events-paginate mb-1' style ='margin-left: 15px;'
+    = paginate @events

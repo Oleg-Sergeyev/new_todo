@@ -1,0 +1,28 @@
+.body{
+background-color: white;
+height: 100%;
+}
+
+.container{
+max-width: 100%;
+margin: 0;
+padding: 0;
+}
+
+#id_copyright {
+color:white; 
+margin: 0 20px 0 0;
+}
+
+a { 
+text-decoration: none;
+color: grey;
+} 
+
+
+@media (max-width: 979px){
+.navbar-fixed-bottom {
+  margin-top: 18px;
+  position: fixed;
+}
+}

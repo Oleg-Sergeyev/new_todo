@@ -1,0 +1,7 @@
+- @admin_users.all.each do |admin_user|
+  tr[id="admin_user_#{admin_user.id}"]
+    td = link_to admin_user.name, edit_admin_user_path(admin_user), class:"link-dark", style:"font-weight: bolder;"
+    td = admin_user.email
+    td = link_to activate_title(admin_user), toggle_admin_user_path(admin_user), method: :post, class:'toggle', remote: true
+    td = admin_user.role.code
+    td = admin_user.created_at.strftime("%d-%m-%Y, %H:%M")

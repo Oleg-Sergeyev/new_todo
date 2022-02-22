@@ -1,0 +1,7 @@
+h1 =t('activerecord.attributes.event.list_items')
+p = t('activerecord.attributes.event.name')
+= @event.name
+
+== render 'form'
+
+/= link_to 'New Item', new_item_path

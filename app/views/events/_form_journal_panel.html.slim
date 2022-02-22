@@ -1,0 +1,23 @@
+div id = 'calendar_event' class = 'mb-3' style ='margin: 10px;'
+  = form_for :event do |f|
+    table.table.table
+      thead
+        .field
+          tr
+            th.col-1.st = f.label 'start_date'
+            th.col-1.st = f.label 'finish_date'
+            th.col-1.mid = f.label'count', style:"display: block; text-align:center;"
+            th.col-1.mid = f.label 'submit', style:"display: block; text-align:center;"
+            th.col-2.mid = f.label 'set interval', style:"display: block; text-align:center;"
+      tbody
+        .field
+          tr
+            td.col-1.st = f.date_field :start_date, value: @start_date.strftime("%Y-%m-%d"), class: 'form-control form-control-sm start_date', id:'start_date'
+            td.col-1.st = f.date_field :final_date, value: @final_date.strftime("%Y-%m-%d"), class: 'form-control form-control-sm'
+            td.col-1.mid = f.select(:rows_count, [['5'], ['15'], ['20'], ['25'], ['30'], ['35'], ['40']], {disabled: '40', selected: cookies[:rows_count].to_i}, id:"select_rows_count")
+            td.col-1.mid = f.submit t('label.submit'), class: 'btn btn-secondary mb', data: { disable_with: false }, id:'app_journal_btn'
+            td.col-2.bg-light.bg-gradient.mid = f.label "#{l(@start_date.to_date)} - #{l(@final_date.to_date)}", class:"text-black-50", style:"display: block; text-align:center;"
+            td.col-6
+
+
+

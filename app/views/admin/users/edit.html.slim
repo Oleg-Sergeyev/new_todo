@@ -1,0 +1,53 @@
+div id = 'table_users' class = 'mb-3' style ='margin: 10px; width: fit-content'
+  table.table.table.table-striped style ='margin: 5px;'
+    thead
+      = form_for(@admin_user, html: { method: :put }, url: admin_user_path(@admin_user)) do |f|
+        .field   
+          tr
+            th colspan="2"
+              .d-flex.justify-content-between
+                = link_to 'Edit user', edit_admin_user_path, method: :get, id:'edit-user', remote: true, style:"font-size: 1.8em;"
+                = link_to 'Delete user', admin_destroy_user_path, method: :delete, data: { confirm: "You sure?" }, id:'edit-user', class: 'btn btn-secondary', disabled: true
+                /= f.submit "Delete user", data: { confirm: "You sure?" }, method: :destroy, class: 'btn btn-secondary', disabled: true
+            tr
+              th = t("Params")
+              th = t("Value")
+        tbody
+          tr
+            td = f.label :role
+            td = f.select(:role_id, Role.all.collect {|u| [u.name, u.id]}, {}, {class: "form-select", id:"role-select", disabled: true}) 
+          tr
+            td = f.label :name
+            td = f.text_field :name, class:"form-control", placeholder:"Edit name", type:"text", disabled: true
+          tr
+            td = f.label :email
+            td = f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email address", type:"email", disabled: true
+          tr
+            td = f.label :active
+            td = f.check_box :active, {checked: @admin_user.active, disabled: true, id:"check-box-active"}
+          tr
+            td colspan="2"
+              = f.submit "Update data", data: { confirm: "Are you sure?" }, class: 'btn btn-secondary', disabled: true
+    tbody                                
+      = form_for(@admin_user, html: { method: :put }, url: :back) do |f|
+        .field   
+          tr
+            td = f.label :password
+            td = f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"New password",type:"password", disabled: true
+          tr
+            td = f.label :password_confirmation
+            td = f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"Confirm password",type:"password", disabled: true
+          tr
+            td colspan="2"
+              .form-check.d-flex.justify-content-end
+                = f.submit "Update pass", data: { confirm: "Are you sure?" }, class: 'btn btn-secondary', disabled: true
+        tbody         
+          tr
+            td colspan="2"
+              .form-check.d-flex.justify-content-center id="cancel-link"
+                = link_to t('label.cancel'), edit_admin_user_path(@admin_user), class: 'btn btn-secondary'
+                /= f.submit "Cancel", data: { confirm: "Are you sure?" }, class: 'btn btn-secondary', disabled: true
+                /= link_to t('label.cancel'), class: 'btn btn-secondary'
+            /td = link_to t('label.cancel'), edit_admin_user_path(@admin_user), class: 'btn btn-secondary', disabled: true
+            
+            

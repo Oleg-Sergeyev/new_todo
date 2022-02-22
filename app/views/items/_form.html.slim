@@ -1,0 +1,19 @@
+div id = 'table_items' class = 'mb-3' style ='margin: 10px;'
+  /= link_to @event.name, :back
+  = form_for(@item) do |f|
+    table.table.table-striped class ='table table-striped' style ='margin: 5px;'
+      thead
+        tr
+          th =t('№')
+          th =t('activerecord.attributes.item.name')
+          th =t('activerecord.attributes.item.done')
+          th =t('activerecord.attributes.item.finished_at')
+          th =t('label.update')
+      tbody
+        .field
+          f.tr
+            td = 1
+            td = f.text_area :name, class: 'form-control form-control-sm'
+            td = f.check_box :done, {checked: @item.done}
+            td = @item.finished_at ? item.finished_at.strftime("%d-%m-%Y, %H:%M") : t('activerecord.attributes.event.no_finished')
+            td = f.submit t('label.update'), data: { confirm: t('messages.questions.are_you_sure?') }, class: 'btn btn-dark', style: 'margin: 5px'         

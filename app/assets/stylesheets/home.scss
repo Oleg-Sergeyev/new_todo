@@ -1,0 +1,41 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.happy_ny_iamge{
+  box-shadow: 4px 6px 8px 0px rgba(34, 60, 80, 0.2); 
+  border-radius: 15px;
+  border: 2px solid white;
+}
+.happy_ny_class{
+  margin: 30px;  
+}
+
+.fixed-bottom{
+  width: 100%;
+  background-color: #0d6efd;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+.carousel-inner{
+  box-shadow: 2px 6px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.carousel-control-next{
+  /*height: 0;
+  margin-right: -50px;
+  box-shadow: 2px 6px 8px 0px rgba(34, 60, 80, 0.2);*/
+}
+.carousel-control-prev{
+  /*height: 0;
+  margin-left: -50px;
+  box-shadow: 2px 6px 8px 0px rgba(34, 60, 80, 0.2);*/
+}
+.carousel, .slide, .carousel-dark{
+  width: 70%;
+}
+.container-fluid, .carousel, .text-center{
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+}

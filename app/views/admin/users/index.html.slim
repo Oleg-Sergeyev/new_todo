@@ -1,0 +1,15 @@
+div id = 'table_users' class = 'mb-3' style ='margin: 10px;'
+  table.table.table-striped style ='margin: 5px;'
+    tr
+      th = t("Name")
+      th = t("Email")
+      th = t("Status")
+      th = t("Role")
+      th = t("Created")
+    tbody     
+      = render 'admin/users/admin_user', users: @admin_users
+div class = 'admin_paginate mb-1' style ='margin-left: 15px;'
+  = paginate @admin_users
+  /      td = link_to 'Destroy', admin_user_path(user), data: { confirm: 'Are you sure?' }, method: :delete
+
+

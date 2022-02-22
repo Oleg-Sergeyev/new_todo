@@ -1,0 +1,6 @@
+Системный администратор;System(s) Administrator
+Веб-дизайнер;Web designer
+Верстальщик;Imposer
+Тестировщик;Software tester
+Разработчик баз данных;Database developer
+Фронт-энд разработчик;Front-end developer

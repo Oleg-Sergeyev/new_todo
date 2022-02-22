@@ -1,0 +1,91 @@
+ru:
+  time:
+    formats:
+      default: '%d-%m-%Y, %H:%M'
+  label:
+    log_in:           Авторизация
+    log_out:          Выход
+    come_in:          Войти
+    hello:            Привет, %s
+    edit_profile:     Изменить данные
+    registration:     Регистрация
+    role:             Права
+    create_new_event: Создать новое задание
+    list_events:      Список основных заданий
+    period:           Период
+    display_by:       Отображать по
+    submit:           Применить
+    back:             Назад
+    edit:             Редактировать
+    update:           Изменить
+    new_item:         Новое подзадание
+    localization:     Локализация
+  messages:
+    questions:
+      are_you_sure?:  Вы уверены?      
+  top-menu:
+    home:    Домой
+    stats:   Статистика
+    events:  Задания
+    admin:   Админ-режим
+    about:   О нас
+  activerecord:
+    models:
+      user:    Пользователи
+      post:    Сообщения
+      event:   Задание
+      item:    Подзадание
+      items:   Подзадания
+      role:    Роль 
+      seo:     СЕО
+      comment: Коментарий
+      stats:   Статистика  
+    attributes:
+      user:
+        password:              Пароль
+        password_confirmation: Подтверждение пароля
+        email:                 Email
+        name:                  Имя пользователя
+        active:                Статус
+        created_at:            Был создан
+        updated_at:            Был обновлен
+        events_ffd_count:      Выполненные задания
+        events_unffd_count:    Невыполненные задания
+        events_count:          Количество заданий
+        items_count:           Количество подзаданий
+        items_ffd_count:       Выполненные подзадания
+        items_unffd_count:     Невыполненные подзадания
+      role:
+        name: Название роли
+        code: Обозначение роли/псевдоним
+      item:
+        name:         Название подзадания
+        done:         Статус завершения
+        finished_at:  Было завершено
+        editing_item: Изменение подзадания
+        many:         подзаданий
+        one:          подзадание
+        others:       подзадания
+      event:
+        name:         Название задания
+        content:      Описание задания
+        done:         Статус выполнения
+        finished_at:  Было завершено
+        list_events:  Список основных заданий
+        list_items:   Список подзадний
+        not_finished: Не завершено
+        finished:     Завершено
+        many:         заданий
+        one:          задание
+        others:       задания
+      comment:
+        content:    Содержимое сообщения
+        created_at: Был создан
+        updated_at: Был обновален
+
+    errors:
+      messages:
+        blank:     обязательно для заполнения
+        too_short: слишком коротко
+
+      

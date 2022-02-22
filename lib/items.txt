@@ -1,0 +1,17 @@
+OS_SETUP.Установка linux os Ubuntu Server
+OS_SETUP.Настройка сетевых интерфейсов
+OS_SETUP.Настройка пакетного фильтра Iptables
+WEB_DSGN.Разработка основного дизайна
+WEB_DSGN.Разработка графических макетов старниц
+RoR_SETUP.Установка фреймворка Ruby on Rails
+RoR_SETUP.Прописывание необходимых гемов
+DB_SETUP.Установка СУБД PostgreSQL
+DB_SETUP.Настройка доступа
+DVP_MODELS.Создание модели Role
+DVP_MODELS.Создание модели User
+DVP_MODELS.Создание модели Event
+DVP_MODELS.Создание модели Item
+DVP_VIEWS.Создание шаблона 'Main'
+DVP_VIEWS.Создание шаблона 'About'
+DVP_JS.Разработка JS-кода для страницы 'About'
+DVP_JS.Разработка JS-кода для страницы 'Main'
