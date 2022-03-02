@@ -13,6 +13,10 @@ h2
     br
     = f.label " ", id:"label_wrong_email"
   .field
+    = f.label :avatar
+    br
+    = f.file_field :avatar  
+  .field
     = f.label :password
     - if @minimum_password_length
       em

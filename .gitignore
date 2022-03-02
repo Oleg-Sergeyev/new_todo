@@ -37,3 +37,5 @@ yarn-debug.log*
 smtp_srv.env
 /app/env/*
 log/*
+/storage/*
+!/storage/.keep

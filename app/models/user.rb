@@ -35,6 +35,8 @@ class User < ApplicationRecord
 
   has_one :seos, as: :promoted
 
+  has_one_attached :avatar
+  
   # def def_methods
   #   Role.find_each do |role|
   #     User.define_method "#{role.code}?" do

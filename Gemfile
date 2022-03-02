@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.0.2'
 
 # gem 'activeadmin'
 # gem 'arctic_admin'
@@ -38,6 +38,10 @@ gem 'webpacker', '~> 5.0'
 # gem 'letter_opener'
 gem 'dotenv-rails'
 gem 'whenever', require: false
+gem 'resque'
+gem 'resque-scheduler'
+gem 'image_processing'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

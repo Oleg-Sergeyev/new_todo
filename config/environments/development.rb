@@ -78,6 +78,7 @@ Rails.application.configure do
     user_name: ENV['EMAIL_LOGIN'],
     password: ENV['EMAIL_PASSWORD']
   }
+  config.active_storage.service = :local
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 end
