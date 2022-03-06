@@ -41,7 +41,7 @@ gem 'whenever', require: false
 gem 'resque'
 gem 'resque-scheduler'
 gem 'image_processing'
-
+gem 'slim-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -63,7 +63,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'lorem_ipsum_amet', '~> 0.6.2'
   gem 'rack-mini-profiler', '~> 2.0'
-  gem 'slim-rails'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
