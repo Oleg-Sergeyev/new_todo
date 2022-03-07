@@ -18,6 +18,11 @@
     f.div.d-flex.flex-column.new_role
         = icon('fa', 'folder-plus', class: 'strong ', style: "color: #c7c7c7; font-size: 1.8em; text-align: center;")
         = label(:roles, 'new role',  style: "margin: 5px 5px 0 5px; font-size: 0.95em;")
+- if item == 'images'      
+  = form_with do |f|      
+    f.div.d-flex.flex-column.new_role
+        = icon('fa', 'folder-plus', class: 'strong ', style: "color: #c7c7c7; font-size: 1.8em; text-align: center;")
+        = label(:images, 'images',  style: "margin: 5px 5px 0 5px; font-size: 0.95em;")        
 - if item == 'exit'      
   = form_with do |f|      
     f.div.d-flex.flex-column.new_role

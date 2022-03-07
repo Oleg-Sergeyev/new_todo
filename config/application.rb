@@ -52,6 +52,7 @@ module Todo
     # config.paths.add Rails.root.join('lib').to_s, eager_load: true
     # config.paths.add Rails.root.join('app/api/helpers').to_s, eager_load: true
     config.eager_load_paths << "#{Rails.root}/lib"
+    config.eager_load_paths << "#{Rails.root}/public/images/upload/**"
     config.eager_load_paths << "#{Rails.root}/app/api/entities/**"
     # config.assets.paths << Rails.root.join("app", "api", "helpers")
 
@@ -93,5 +94,6 @@ module Todo
       g.javascript      false
       g.factory_bot     dir: 'spec/factories'
     end
+    config.active_storage.variant_processor = :vips
   end
 end

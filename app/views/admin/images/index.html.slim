@@ -1,0 +1,29 @@
+div id = 'table_image' class = 'mb-3' style ='margin: 10px;'
+  table.table.table-striped class ='table table-striped' style ='margin: 5px;'
+    thead
+      tr
+        th =t('Resource')
+        th =t('Current image')
+        th =t('Choose image')
+        th =t('Update image')
+    tbody
+      tr
+        = form_tag 'images/create', { multipart: true } do
+          td = t('About')
+          td = image_tag "about_image_resize.png", width: 180, height: 120, class: :rounded, style:"object-fit: cover;"
+          td = file_field_tag 'upload[file]', { accept: "image/*" }
+          td = submit_tag "Upload"
+  / = form_for(:about, url: admin_about_path, html: { method: :put }) do |form|
+  /   .form-group
+  /     = form.label 'Add picture'
+  /     br
+  /     = form.file_field :picture
+  /     = form.submit "Upload image", data: { confirm: "Are you sure?" }, class: 'btn btn-secondary'  
+  /= flash.each do |key, msg|
+    = content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}"
+  / = form_tag 'about/create', { :multipart => true } do
+  /   = image_tag "about_image_resize.png", width: 180, height: 120, class: :rounded
+  /   = file_field_tag 'upload[file]'
+  /   br
+  /   br
+  /   = submit_tag "Upload"

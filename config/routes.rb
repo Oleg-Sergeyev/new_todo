@@ -55,6 +55,8 @@ Rails.application.routes.draw do
   # get 'events/page', to: 'events#index'
   get 'stats', to: 'stats#index'
   get 'about', to: 'about#index'
+  get 'admin/images', to: 'admin/images#index'
+  post 'admin/images/create', to: 'admin/images#create'
   # get 'calendar', to: 'calendar#index', as: 'calendar_index'
   # get 'about', to: 'abount#index', as: 'about_index'
 end

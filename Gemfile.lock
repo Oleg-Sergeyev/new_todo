@@ -313,6 +313,7 @@ GEM
       resque (>= 1.27)
       rufus-scheduler (~> 3.2, < 3.7)
     rexml (3.2.5)
+    rmagick (4.2.4)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -446,6 +447,7 @@ DEPENDENCIES
   rails-i18n (~> 6.0)
   resque
   resque-scheduler
+  rmagick
   rspec-rails
   sass-rails (>= 6)
   slim-rails

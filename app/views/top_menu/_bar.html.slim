@@ -13,6 +13,8 @@ navbar class = "navbar navbar-expand-lg navbar-dark bg-primary"
            li.navbar-item
            = link_to_unless_current( t('top-menu.admin'), { controller: "/admin/users", action: "index" }, class: "nav-link"){ link_to( t('top-menu.admin'), { controller: "admin/users", action: "index" }, class: "nav-link disabled") }
          li.navbar-item
+         = link_to_unless_current( t('top-menu.about'), { controller: "/about", action: "index" }, class: "nav-link"){ link_to( t('top-menu.about'), { controller: "stats", action: "index" }, class: "nav-link disabled") }         
+         li.navbar-item
        /ul.nav.navbar-nav.navbar-center.mr-auto
          li.navbar-item
            form.form-inline role="search"
