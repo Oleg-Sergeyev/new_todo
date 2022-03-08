@@ -94,6 +94,6 @@ module Todo
       g.javascript      false
       g.factory_bot     dir: 'spec/factories'
     end
-    config.active_storage.variant_processor = :vips
+    config.active_storage.variant_processor #= :vips
   end
 end
