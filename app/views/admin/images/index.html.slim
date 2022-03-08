@@ -11,8 +11,18 @@ div id = 'table_image' class = 'mb-3' style ='margin: 10px;'
         = form_tag 'images/create', { multipart: true } do
           td = t('About')
           td = image_tag "about_image_resize.png", width: 180, height: 120, class: :rounded, style:"object-fit: cover;"
-          td = file_field_tag 'upload[file]', { accept: "image/*" }
+          td = file_field_tag 'about[file]', { accept: "image/*" }
           td = submit_tag "Upload"
+      tr
+        = form_tag 'images/create', { multipart: true } do
+          td = t('Carousel')
+          td 
+            = image_tag "1.jpg", width: 140, height: 80, class: :rounded, style:"object-fit: cover;"
+            = image_tag "2.jpg", width: 140, height: 80, class: :rounded, style:"object-fit: cover;"
+            = image_tag "3.jpg", width: 140, height: 80, class: :rounded, style:"object-fit: cover;"
+            = image_tag "4.jpg", width: 140, height: 80, class: :rounded, style:"object-fit: cover;"
+          td = file_field_tag 'carousel[file][]', { accept: "image/*", multiple: true }
+          td = submit_tag "Upload"    
   / = form_for(:about, url: admin_about_path, html: { method: :put }) do |form|
   /   .form-group
   /     = form.label 'Add picture'

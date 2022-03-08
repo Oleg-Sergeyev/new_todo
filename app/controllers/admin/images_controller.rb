@@ -18,25 +18,28 @@ module Admin
     # end
 
     def create
-      # name = params[:upload][:file].original_filename
-      path = File.join(Rails.root, 'app', 'assets', 'images', 'about_image.png')
-      File.open(path, 'wb') { |f| f.write(params[:upload][:file].read) }
-      image = Magick::Image.read(path).first
-      new_path = File.join(Rails.root, 'app', 'assets', 'images', 'about_image_resize.png')
+      if params.key?(:about)
+        @path = File.join(Rails.root, 'app', 'assets', 'images', 'about_image.png')
+        File.open(@path, 'wb') { |f| f.write(params[:about][:file].read) }
+        @new_path = File.join(Rails.root, 'app', 'assets', 'images', 'about_image_resize.png')
+      end
+      if params.key?(:carousel)
+        #
+      end
+      image = Magick::Image.read(@path).first
       image.change_geometry!('640x480') do |cols, rows, img|
         newimg = img.resize(cols, rows)
-        newimg.write(new_path)
+        newimg.write(@new_path)
       end
-      #message[:notice] = "File uploaded : #{name}"
-      redirect_to admin_images_path #(message: "File uploaded : #{name}")
+      redirect_to admin_images_path
     end
 
-    def resize_image(file)
-      image = Magick::Image.read(file.filename).first
-      image.change_geometry!('640x480') do |cols, rows, img|
-        newimg = img.resize(cols, rows)
-        newimg.write('about_image_resize.png')
-      end
-    end
+    # def resize_image(file)
+    #   image = Magick::Image.read(file.filename).first
+    #   image.change_geometry!('640x480') do |cols, rows, img|
+    #     newimg = img.resize(cols, rows)
+    #     newimg.write('about_image_resize.png')
+    #   end
+    # end
   end
 end
