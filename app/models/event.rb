@@ -12,6 +12,7 @@ class Event < ApplicationRecord
   has_many :comments, as: :commentable
   # has_many :users, through: :commnets
   has_many :comentators, through: :comments, source: :user
+  has_many_attached :files #strict_loading: true
 
   private
 

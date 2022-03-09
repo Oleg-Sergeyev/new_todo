@@ -15,6 +15,9 @@ div id = 'new_event' class = 'mb-3' style ='border: 1px dashed #0d6efd;
     .field
       = f.label 'Содержимое', class: 'form-label'
       = f.text_area :content, class: 'form-control form-control-sm'
+    .field
+      = f.label :files, class: 'form-label'
+      = f.file_field :files, multiple: true, class: 'form-control'
 
     .field
       = f.label 'Выполнено', class: 'form-label'

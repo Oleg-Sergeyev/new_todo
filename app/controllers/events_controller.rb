@@ -105,13 +105,14 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find(params[:id])
+    #@event = Event.find(params[:id])
+    @event = Event.with_attached_files.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:name, :user_name, :content, :done, :user, :created_at, :start_date, :final_date,
-                                  :rows_count)
+                                  :rows_count, files: [])
   end
 
   def render_interval_query(rows_count, start_date, final_date)

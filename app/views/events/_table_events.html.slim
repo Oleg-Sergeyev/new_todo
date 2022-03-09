@@ -4,7 +4,8 @@ div id = 'table_view' class = 'mb-3' style ='margin: 10px;'
         tr
           th N
           th Пользователь
-          th Задание 
+          th Задание
+          th = t('Images') 
           th Дата создания
           th Статус
           th Подзадания 
@@ -16,6 +17,14 @@ div id = 'table_view' class = 'mb-3' style ='margin: 10px;'
             td = (index + 1) + (cookies[:rows_count].to_i * @events.current_page) - cookies[:rows_count].to_i
             td = event.user.name
             td = link_to event.name, event
+            - if event.files.attached?
+              td
+                table
+                  - event.files.each_with_index do |file, i|
+                    tr
+                      td = link_to truncate(file.blob.filename.to_s, length: 20), rails_blob_path(file, only_path: true)
+            - else
+              td = ''    
             td = event.created_at.strftime("%d-%m-%Y, %H:%M")
             td = "V" if event.done == true
             td = event.items.count
