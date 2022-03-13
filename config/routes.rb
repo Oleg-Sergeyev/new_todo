@@ -7,17 +7,6 @@ Rails.application.routes.draw do
   resources :events do
     resources :items
   end
-  namespace :admin do
-    resources :roles
-  end
-  namespace :admin do
-    root 'users#index'
-    resources :users do
-      member do
-        post :toggle, action: :toggle
-      end
-    end
-  end
 
   root 'home#index'
   
