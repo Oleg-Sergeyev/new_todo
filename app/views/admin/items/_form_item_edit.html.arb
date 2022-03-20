@@ -1,0 +1,14 @@
+# Form for edit current user or create new user
+
+active_admin_form_for [:admin, resource] do |f|
+  f.inputs t('Change or create: item') do
+    f.semantic_errors(*f.object.errors.keys)
+    f.input :name
+    f.input :done
+    f.input :finished_at
+  end
+  f.actions do
+    f.action :submit, label: t('Отправить'), as: :button
+    f.cancel_link action: 'index', label: t('Отмена'), as: :button
+  end
+end

@@ -7,12 +7,17 @@ class ApplicationController < ActionController::Base
   # before_action :dont_allow_admin_update_profile
   before_action :dont_allow_default_show_users
 
-  def after_sign_in_path_for(user)
-    user.admin? ? admin_root_path : root_path
+  #def after_sign_in_path_for(user)
+    #user.admin? ? admin_root_path : root_path
+  #end
+
+  def destroy_admin_user_session_path
+    session[:current_admin] = nil
+    root_path
   end
 
   def access_denied(exception)
-    exception.sign_out
+    sign_out
     redirect_to root_path
   end
 

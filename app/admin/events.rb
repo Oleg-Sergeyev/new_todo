@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Event do
   menu priority: 3
   show title: proc { |event| event.name.truncate(50) }
@@ -6,9 +8,9 @@ ActiveAdmin.register Event do
   index do
     id_column
     column 'Содержимое' do |event|
-      tag.strong(event.name.truncate(50)) +
-      tag.br +
-      event.content.truncate(150)
+      tag.strong(link_to event.name.truncate(50), "/admin/events/#{event.id}" ) +
+        tag.br +
+        event.content.truncate(150)
     end
     column :done
     column :user
@@ -36,7 +38,11 @@ ActiveAdmin.register Event do
       scope = resource.items.order(created_at: :desc)
       table_for scope do
         column 'ID', :id
-        column 'Название', :name
+        #column link_to(:name, edit_event_item(:id), class: 'link-dark', style: 'font-weight: bolder;')
+        column 'Название' do |p|
+          link_to p.name.truncate(100), "/admin/items/#{p.id}"
+        end
+        #column 'Название', :name
         column 'Выполнено', :done
         column 'Срок выполнения', :finished_at
         column 'Дата обновления', :updated_at

@@ -1,0 +1,23 @@
+# Form for edit current user or create new user
+
+active_admin_form_for [:admin, resource] do |f|
+  f.inputs t('Change or create: name, status, role') do
+    f.semantic_errors(*f.object.errors.keys)
+    f.input :name
+    f.input :active, label: t('Активность пользователя')
+    f.input :role
+  end
+  f.inputs t('Change or create: email') do
+    f.input :email
+  end
+  if object.new_record?
+    f.inputs t('Create: password') do
+      f.input :password, label: t('Новый пароль')
+      f.input :password_confirmation, label: t('Подтверждение пароля')
+    end
+  end
+  f.actions do
+    f.action :submit, label: t('Отправить'), as: :button
+    f.cancel_link action: 'index', label: t('Отмена'), as: :button
+  end
+end

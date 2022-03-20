@@ -39,6 +39,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_admin-subnav (1.1.1)
+      activeadmin
     activeadmin (2.11.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
@@ -161,6 +163,8 @@ GEM
       railties (>= 5.0.0)
     ffaker (2.20.0)
     ffi (1.15.4)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     formtastic (4.0.0)
@@ -439,6 +443,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_admin-subnav
   activeadmin
   bcrypt
   bootsnap (>= 1.4.4)
@@ -453,6 +458,7 @@ DEPENDENCIES
   erb_lint
   factory_bot_rails
   ffaker
+  font-awesome-rails
   font-awesome-sass (~> 5.15.1)
   grape
   grape-entity
