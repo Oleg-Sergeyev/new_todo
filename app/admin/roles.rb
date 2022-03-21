@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ActiveAdmin.register Role
 
 ActiveAdmin.register Role do
@@ -11,8 +13,7 @@ ActiveAdmin.register Role do
     #   object.soft_delete
     # end
   end
- 
- 
+
   index do
     column :name do |role|
       link_to(role.name, edit_admin_role_path(role.id), class: 'link-dark', style: 'font-weight: bolder;')

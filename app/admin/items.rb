@@ -3,7 +3,6 @@
 ActiveAdmin.register Item do
   actions :index, :show, :update, :edit, :destroy
   menu priority: 4, label: 'Подзадания'
-  show title: proc { |item| item.name.truncate(50) }
 
   permit_params %i[id event user event_id name content done finished_at]
 
@@ -43,10 +42,10 @@ ActiveAdmin.register Item do
 
   filter :name
   filter :done
-  #, as: :radio, collection: [['Yes', 'yes', { checked: true }], ['No', 'no', { checked: false }]], include_blank: false
+  # , as: :radio, collection: [['Yes', 'yes', { checked: true }], ['No', 'no', { checked: false }]], include_blank: false
   filter :finished_at
   filter :event
-  #filter User.includes(:events).pluck(:name).to_s
-  #filter :user_name_eq, as: :select, collection: -> { User.pluck(:id, :name) }
-  #filter :my_custom_filter, as: :select, collection: -> { User.pluck(:id, :name) }, filters: [:eq]
+  # filter User.includes(:events).pluck(:name).to_s
+  # filter :user_name_eq, as: :select, collection: -> { User.pluck(:id, :name) }
+  # filter :my_custom_filter, as: :select, collection: -> { User.pluck(:id, :name) }, filters: [:eq]
 end

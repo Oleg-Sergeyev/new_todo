@@ -52,6 +52,13 @@ ActiveAdmin.register Event do
         column 'Срок выполнения', :finished_at
         column 'Дата обновления', :updated_at
         column 'Дата создания', :created_at
+        column :actions do |item|
+          links = []
+          links << link_to('Show', admin_item_path(item))
+          links << link_to('Edit', edit_admin_item_path(item))
+          links << link_to('Delete', admin_item_path(item), data: { action: :destroy, method: :delete, confirm: 'Are you sure?' })
+          links.join(' ').html_safe
+        end
       end
     end
   end

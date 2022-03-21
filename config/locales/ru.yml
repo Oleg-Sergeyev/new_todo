@@ -31,9 +31,12 @@ ru:
     about:   О нас
   activerecord:
     models:
-      user:    Пользователи
-      post:    Сообщения
+      user:    Пользователь
+      users:   Пользователи
+      post:    Сообщение
+      posts:   Сообщения
       event:   Задание
+      events:  Задания
       item:    Подзадание
       items:   Подзадания
       role:    Роль 

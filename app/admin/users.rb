@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register User do
-  #before_action :left_sidebar!#, only: [:show]
+  # before_action :left_sidebar!#, only: [:show]
   menu priority: 2, label: 'Пользователи сайта'
   permit_params %i[email name active role_id password password_confirmation]
   config.sort_order = 'name_asc'
@@ -15,7 +15,7 @@ ActiveAdmin.register User do
 
   index do
     # selectable_column
-    #column :id, &:id
+    # column :id, &:id
     column(:avatar, width: 100) do |user|
       if user.avatar.attached?
         image_tag user.avatar.variant(resize: '30x30'), class: 'img-fluid rounded-circle'
@@ -25,13 +25,13 @@ ActiveAdmin.register User do
     end
     column :name do |user|
       link_to(user.name, edit_admin_user_path(user.id), class: 'link-dark', style: 'font-weight: bolder;')
-      #link_to(user.name, admin_user_basic_path(user.id), class: 'link-dark', style: 'font-weight: bolder;')
+      # link_to(user.name, admin_user_basic_path(user.id), class: 'link-dark', style: 'font-weight: bolder;')
     end
     column :email
     column :active
     column :role
     # column :created_at
-    #actions
+    # actions
   end
 
   filter :email
