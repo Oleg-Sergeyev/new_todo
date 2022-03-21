@@ -17,6 +17,7 @@ ActiveAdmin.register Event do
     actions
   end
 
+
   filter :id
   filter :name
   filter :content
@@ -33,7 +34,11 @@ ActiveAdmin.register Event do
       row :finished_at
       row :updated_at
       row :created_at
+      row :file do
+        link_to('Download Event', admin_events_path(q: { id_eq: resource.id }, format: :csv))
+      end
     end
+ 
     panel 'Подпункты' do
       scope = resource.items.order(created_at: :desc)
       table_for scope do

@@ -13,17 +13,6 @@ ActiveAdmin.register User do
   #   end
   # end
 
-  # show title: :name do
-  #   attributes_table do
-  #     row :email
-  #     row :name do
-  #       link_to(:name, edit_admin_user_path(object.admin_user), class:"link-dark", style:"font-weight: bolder;")
-  #     end
-  #     row :active
-  #     row :role
-  #   end
-  # end
-
   index do
     # selectable_column
     #column :id, &:id
@@ -64,48 +53,4 @@ ActiveAdmin.register User do
   end
 
   form partial: 'form_user_edit'
-
-  #     tab 'Security', html_options: { class: '' } do
-  #       f.inputs do
-  #         f.input :password
-  #         f.input :password_confirmation
-  #       end
-  #       f.actions do
-  #         f.action :submit, label: 'Отправить', as: :button
-  #       end
-  #     end
-  #   end
-  #   #f.actions
-  # end
-  #show title: proc { |user| user.name } do
-    #panel 'Основные' do
-      # form do |f|
-      #   f.inputs do
-      #     f.semantic_errors(*f.object.errors.keys)
-      #     f.input :email
-      #     f.input :name
-      #     f.input :active
-      #     f.input :role
-      #     if f.object.new_record?
-      #       f.input :password
-      #       f.input :password_confirmation
-      #     end
-      #   end
-      #   f.actions do
-      #     f.action :submit, label: 'Отправить', as: :button
-      #   end
-      # end
-    #end
-
-    # panel 'Безопасность' do
-    #   form do |f|
-    #     f.inputs do
-    #       f.input :password
-    #       f.input :password_confirmation
-    #     end
-    #     f.actions do
-    #       f.action :submit, label: 'Отправить', as: :button
-    #     end
-    #  end
-  #end
 end
