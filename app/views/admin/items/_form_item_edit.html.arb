@@ -1,8 +1,8 @@
-# Form for edit current user or create new user
-
+# Form for edit current item
 active_admin_form_for [:admin, resource] do |f|
   f.inputs t('Change or create: item') do
     f.semantic_errors(*f.object.errors.keys)
+    f.input :event_id, as: :hidden
     f.input :name
     f.input :done
     f.input :finished_at

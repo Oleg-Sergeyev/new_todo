@@ -5,14 +5,16 @@ Rails.application.routes.draw do
 
   devise_for :users#, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   mount RootApi => '/'
   mount Resque::Server.new, at: '/resque'
-  resources :events do
-    resources :items
-  end
+
+  # resources :events do
+  #   resources :items
+  # end
 
   root 'home#index'
-  
+
   get 'emails', to: 'emails#index'
 
   post :toggle, to: 'locales#toggle'

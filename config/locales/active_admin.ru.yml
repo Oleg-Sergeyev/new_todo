@@ -6,3 +6,11 @@ active_admin:
         new_model: Создать пользователя
         edit_model: Редактировать пользователя
         delete_model: Удалить пользователя
+      event:
+        new_model: Создать задание
+        edit_model: Редактировать задание
+        delete_model: Удалить задание
+      item:
+        new_model: Создать подзадание
+        edit_model: Редактировать подзадание
+        delete_model: Удалить подзадание        
