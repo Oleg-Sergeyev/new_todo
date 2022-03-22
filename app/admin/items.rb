@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Item do
+  menu false
   belongs_to :event, optional: true
   actions :index, :show, :update, :edit, :destroy, :new, :create
   #menu priority: 4, label: 'Подзадания'
