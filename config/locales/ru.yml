@@ -20,6 +20,7 @@ ru:
     update:           Изменить
     new_item:         Новое подзадание
     localization:     Локализация
+    download_book:    скачать книгу
   messages:
     questions:
       are_you_sure?:  Вы уверены?      
@@ -45,6 +46,7 @@ ru:
       stats:   Статистика  
     attributes:
       user:
+        id:                    Ид.номер
         password:              Пароль
         password_confirmation: Подтверждение пароля
         email:                 Email
@@ -63,18 +65,22 @@ ru:
         name: Название роли
         code: Обозначение роли/псевдоним
       item:
-        name:         Название подзадания
-        done:         Статус завершения
-        finished_at:  Было завершено
+        id:           Ид.номер
+        name:         Название
+        done:         выполнено
+        finished_at:  завершено
         editing_item: Изменение подзадания
         many:         подзаданий
         one:          подзадание
         others:       подзадания
+        updated_at:   обновалено
+        created_at:   создано        
       event:
-        name:         Название задания
-        content:      Описание задания
-        done:         Статус выполнения
-        finished_at:  Было завершено
+        id:           Ид.номер
+        name:         Название
+        content:      Описание
+        done:         выполнено
+        finished_at:  Завершено
         list_events:  Список основных заданий
         list_items:   Список подзадний
         not_finished: Не завершено
@@ -82,14 +88,16 @@ ru:
         many:         заданий
         one:          задание
         others:       задания
+        updated_at:   Обновалено
+        created_at:   Создано
       comment:
         content:    Содержимое сообщения
-        created_at: Был создан
-        updated_at: Был обновален
+        created_at: Создан
+        updated_at: Обновален
 
     errors:
       messages:
         blank:     обязательно для заполнения
         too_short: слишком коротко
 
-      
+

@@ -23,6 +23,7 @@ class User < ApplicationRecord
   belongs_to :role, inverse_of: :users
   has_many :comments, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :items, through: :events
   has_many :has_items, through: :events, source: :items
 
   has_many :commented_events,

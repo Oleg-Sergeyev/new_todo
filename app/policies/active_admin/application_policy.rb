@@ -8,6 +8,22 @@ class ActiveAdmin::ApplicationPolicy
     @record = record
   end
 
+  def report?
+    user.admin?
+  end
+
+  def just_excel?
+    user.admin?
+  end
+
+  def download?
+    user.admin?
+  end
+
+  def upload?
+    user.admin?
+  end
+  
   def index?
     user.admin?
   end

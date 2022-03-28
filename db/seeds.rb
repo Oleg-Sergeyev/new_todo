@@ -92,4 +92,4 @@ User.create! hash_user
 Event.find_each do |date|
   date.update(created_at: DateTime.now - rand(0..5).day)
 end
-User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+#User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -7,13 +7,15 @@ ActiveAdmin.register Event do
   actions :index, :show, :update, :edit, :new, :destroy
 
   action_item :new_item, only: :show do
-    link_to('New Item', new_admin_event_item_path(resource.id), data: { action: :create, method: :get })
+    link_to(I18n.t('active_admin.resources.item.new_model'),
+            new_admin_event_item_path(resource.id),
+            data: { action: :create, method: :get })
   end
 
   index do
     id_column
-    column 'Содержимое' do |event|
-      tag.strong(link_to event.name.truncate(50), "/admin/events/#{event.id}" ) +
+    column I18n.t('active_admin.content') do |event|
+      tag.strong((link_to event.name.truncate(50), "/admin/events/#{event.id}")) +
         tag.br +
         event.content.truncate(150)
     end
@@ -21,7 +23,6 @@ ActiveAdmin.register Event do
     column :user
     actions
   end
-
 
   filter :id
   filter :name
@@ -34,30 +35,33 @@ ActiveAdmin.register Event do
       row :id
       row :name
       row :content
-      row :done
-      row :user
-      row :finished_at
+      row I18n.t('active_admin.user').capitalize do
+        User.find(event.user_id).name
+      end
+      row :finished_at do
+        event.finished_at.nil? ? t('active_admin.info.still_in_work').capitalize : event.finished_at
+      end
       row :updated_at
       row :created_at
-      row :file do
-        link_to('Download Event', admin_events_path(q: { id_eq: resource.id }, format: :csv))
+      row I18n.t('active_admin.file').capitalize do
+        link_to(I18n.t('active_admin.resources.event.download_model'),
+                admin_events_path(q: { id_eq: resource.id }, format: :csv))
       end
     end
- 
-    panel 'Подпункты' do
+
+    panel t('active_admin.items').capitalize do
       scope = resource.items.order(created_at: :desc)
       table_for scope do
-        column 'ID', :id
+        column :id
         #column link_to(:name, edit_event_item(:id), class: 'link-dark', style: 'font-weight: bolder;')
-        column 'Название' do |p|
+        column :name do |p|
           link_to p.name.truncate(100), "/admin/events/#{resource.id}/items/#{p.id}"
         end
-        #column 'Название', :name
-        column 'Выполнено', :done
-        column 'Срок выполнения', :finished_at
-        column 'Дата обновления', :updated_at
-        column 'Дата создания', :created_at
-        column :actions do |item|
+        column :done
+        column :finished_at
+        column :updated_at
+        column :created_at
+        column I18n.t('active_admin.actions') do |item|
           links = []
           links << link_to('Show', "/admin/events/#{resource.id}/items/#{item.id}")
           links << link_to('Edit', "/admin/events/#{resource.id}/items/#{item.id}/edit")

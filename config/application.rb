@@ -52,6 +52,7 @@ module Todo
     # config.paths.add Rails.root.join('lib').to_s, eager_load: true
     # config.paths.add Rails.root.join('app/api/helpers').to_s, eager_load: true
     config.eager_load_paths << "#{Rails.root}/lib"
+    config.paths.add Rails.root.join('app/lib').to_s, eager_load: true
     config.eager_load_paths << "#{Rails.root}/public/images/upload/**"
     config.eager_load_paths << "#{Rails.root}/app/api/entities/**"
     # config.assets.paths << Rails.root.join("app", "api", "helpers")
@@ -74,7 +75,7 @@ module Todo
     # config.autoloader = :classic
     # config.eager_load = true
     # config.eager_load_paths << "#{Rails.root}/app/api/**"
-    # config.autoloader = :classic
+    #config.autoloader = :classic
     config.active_job.queue_adapter = :resque
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
