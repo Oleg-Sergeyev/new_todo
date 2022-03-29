@@ -32,7 +32,10 @@ module Services
           create(name, email, roles[code]) unless user_imails.include?(email)
           next
         end
-        delete(email) if action && action == 'delete'
+        if action && action == 'delete'
+          delete(email)
+          next
+        end
         update(name, email, roles[code])
       end
     end
