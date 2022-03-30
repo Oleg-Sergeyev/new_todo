@@ -100,4 +100,7 @@ ru:
         blank:     обязательно для заполнения
         too_short: слишком коротко
 
-
+  active_admin:
+    email: эл.почта
+    role:  роль
+    state: статус

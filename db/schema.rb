@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_01_172831) do
+ActiveRecord::Schema.define(version: 2022_03_30_205946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_172831) do
     t.bigint "user_id", comment: "Внешний ключ для связи с таблицей users"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "state"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -96,7 +97,6 @@ ActiveRecord::Schema.define(version: 2022_03_01_172831) do
   create_table "users", comment: "Пользователи системы", force: :cascade do |t|
     t.string "name", comment: "Имя, которое используется для входа"
     t.string "email", comment: "Электронный адрес пользователя"
-    t.boolean "active", default: true, comment: "пользователь активен (true) или заблокирован (false)"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role_id", comment: "Роль пользователя"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_172831) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "state", comment: "Текущее состояние"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true

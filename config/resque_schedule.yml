@@ -4,3 +4,9 @@ queue_clean_up:
   queue: default
   args:
   description: 'Вывод в log-файл'
+queue_manage_users:
+  cron: '* * * * *'
+  class: 'ManageUsersJob'
+  queue: users
+  args:
+  description: 'Управление пользователями через файл'

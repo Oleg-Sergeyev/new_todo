@@ -6,6 +6,8 @@ ru:
     actions: действия
     item:  подпункт
     items: подпункты
+    state: статус
+    role: роль
     info:
       still_in_work: все еще в работе
     resources:

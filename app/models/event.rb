@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
+  include AASM
+
   after_save :count_events
   after_destroy :recount_events
 
@@ -13,6 +15,27 @@ class Event < ApplicationRecord
   # has_many :users, through: :commnets
   has_many :comentators, through: :comments, source: :user
   has_many_attached :files #strict_loading: true
+
+  aasm column: 'state' do
+    state :created, initial: true, display: I18n.t('state.created')
+    state :running, display: I18n.t('state.running')
+    state :pending, display: I18n.t('state.pending')
+    state :finished, display: I18n.t('state.finished')
+
+    event :start do
+      transitions from: :created, to: :running
+    end
+
+    event :pend do
+      transitions from: :running, to: :pending
+      transitions from: :pending, to: :running
+      transitions from: :created, to: :pending
+    end
+
+    event :complete do
+      transitions from: :running, to: :finished
+    end
+  end
 
   private
 

@@ -1,0 +1,10 @@
+ru:
+  state:
+    created: создано
+    running: в работе
+    pending: приостановлено
+    finished: завершено
+    active: активный
+    archived: архивный
+    banned: заблокированный
+    new: новый

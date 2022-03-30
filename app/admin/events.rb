@@ -53,7 +53,7 @@ ActiveAdmin.register Event do
       scope = resource.items.order(created_at: :desc)
       table_for scope do
         column :id
-        #column link_to(:name, edit_event_item(:id), class: 'link-dark', style: 'font-weight: bolder;')
+        # column link_to(:name, edit_event_item(:id), class: 'link-dark', style: 'font-weight: bolder;')
         column :name do |p|
           link_to p.name.truncate(100), "/admin/events/#{resource.id}/items/#{p.id}"
         end
@@ -65,7 +65,8 @@ ActiveAdmin.register Event do
           links = []
           links << link_to('Show', "/admin/events/#{resource.id}/items/#{item.id}")
           links << link_to('Edit', "/admin/events/#{resource.id}/items/#{item.id}/edit")
-          links << link_to('Delete', "/admin/events/#{resource.id}/items/#{item.id}", data: { action: :destroy, method: :delete, confirm: 'Are you sure?' })
+          links << link_to('Delete', "/admin/events/#{resource.id}/items/#{item.id}",
+                           data: { action: :destroy, method: :delete, confirm: 'Are you sure?' })
           links.join(' ').html_safe
         end
       end

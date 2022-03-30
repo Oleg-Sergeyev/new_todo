@@ -18,9 +18,15 @@ ActiveAdmin.register User do
     column :name do |user|
       link_to(user.name, edit_admin_user_path(user.id), class: 'link-dark', style: 'font-weight: bolder;')
     end
-    column :email
-    column :active
-    column :role
+    column I18n.t('active_admin.email').capitalize do |user|
+      user.email
+    end
+    column I18n.t('active_admin.state').capitalize do |user|
+      user.state
+    end
+    column I18n.t('active_admin.role').capitalize do |user|
+      user.role
+    end
   end
 
   filter :email

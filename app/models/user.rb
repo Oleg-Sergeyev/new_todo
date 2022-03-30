@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-
+  include AASM
   include Rolable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -38,7 +38,33 @@ class User < ApplicationRecord
   has_one :seos, as: :promoted
 
   has_one_attached :avatar
-  
+
+  aasm column: 'state' do
+    state :created, display: I18n.t('state.created')
+    state :active, initial: true, display: I18n.t('state.active')
+    state :banned, display: I18n.t('state.banned')
+    state :archived, display: I18n.t('state.archived')
+
+    event :on do
+      transitions from: :created, to: :active
+      transitions from: :banned, to: :active
+    end
+
+    event :off do
+      transitions from: :active, to: :banned
+      transitions from: :banned, to: :archived
+    end
+
+    event :remove do
+      transitions from: :created, to: :archived
+      transitions from: :banned, to: :archived
+    end
+
+    event :restore do
+      transitions from: :archived, to: :banned
+    end
+  end
+
   # def def_methods
   #   Role.find_each do |role|
   #     User.define_method "#{role.code}?" do
