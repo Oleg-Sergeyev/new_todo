@@ -1,23 +1,25 @@
-# Form for edit current user or create new user
+# frozen_string_literal: true
 
 active_admin_form_for [:admin, resource] do |f|
-  f.inputs t('Change or create: name, status, role') do
+  flash[:error]
+  f.inputs t('active_admin.label.change_or_create_name_status_role').capitalize do
     f.semantic_errors(*f.object.errors.keys)
     f.input :name
-    f.input :active, label: t('Активность пользователя')
-    f.input :role
+    f.input :state, collection: { 'active': :active, 'banned': :banned, 'archived': :archived },
+                    selected: object.state, label: t('Активность пользователя'), include_blank: false
+    f.input :role, label: t('active_admin.label.role').capitalize, include_blank: false
   end
-  f.inputs t('Change or create: email') do
-    f.input :email
+  f.inputs t('active_admin.label.change_or_create_email').capitalize do
+    f.input :email, label: t('active_admin.label.email').capitalize
   end
   if object.new_record?
-    f.inputs t('Create: password') do
-      f.input :password, label: t('Новый пароль')
-      f.input :password_confirmation, label: t('Подтверждение пароля')
+    f.inputs t('active_admin.label.create_password').capitalize do
+      f.input :password, label: t('active_admin.label.new_password')
+      f.input :password_confirmation, label: t('active_admin.label.confirm_password')
     end
   end
   f.actions do
-    f.action :submit, label: t('Отправить'), as: :button
-    f.cancel_link action: 'index', label: t('Отмена'), as: :button
+    f.action :submit, label: t('active_admin.label.change').capitalize, as: :button
+    f.cancel_link admin_user_path(resource.id), label: t('cancel'), as: :button
   end
 end

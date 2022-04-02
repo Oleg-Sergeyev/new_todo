@@ -105,7 +105,7 @@ class EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    #@event = Event.find(params[:id])
+    # @event = Event.find(params[:id])
     @event = Event.with_attached_files.find(params[:id])
   end
 

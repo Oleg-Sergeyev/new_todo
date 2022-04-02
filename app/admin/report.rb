@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register_page 'Отчет' do
+  menu priority: 5, label: I18n.t('active_admin.label.reports').capitalize
   controller do
     def date_interval
       report = params['report_form']

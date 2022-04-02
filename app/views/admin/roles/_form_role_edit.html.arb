@@ -1,13 +1,13 @@
-# Form for edit current user or create new user
+# frozen_string_literal: true
 
 active_admin_form_for [:admin, resource] do |f|
-  f.inputs t('Change or create: role') do
+  f.inputs t('active_admin.label.change_or_create_role').capitalize do
     f.semantic_errors(*f.object.errors.keys)
     f.input :name
     f.input :code
   end
   f.actions do
-    f.action :submit, label: t('Отправить'), as: :button
-    f.cancel_link action: 'index', label: t('Отмена'), as: :button
+    f.action :submit, label: t('active_admin.label.send').capitalize, as: :button
+    f.cancel_link admin_role_path(resource.id), label: t('active_admin.label.cancel').capitalize, as: :button
   end
 end

@@ -23,13 +23,11 @@ class Event < ApplicationRecord
     state :finished, display: I18n.t('state.finished')
 
     event :start do
-      transitions from: :created, to: :running
+      transitions from: %i[created pending], to: :running
     end
 
     event :pend do
-      transitions from: :running, to: :pending
-      transitions from: :pending, to: :running
-      transitions from: :created, to: :pending
+      transitions from: %i[running created], to: :pending
     end
 
     event :complete do

@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+active_admin_form_for [:admin, resource] do |f|
+  f.inputs t('active_admin.label.change_or_create_event').capitalize do
+    f.semantic_errors(*f.object.errors.keys)
+    f.input :user, label: t('active_admin.label.user').capitalize, include_blank: false
+    f.input :name
+    f.input :content
+    f.input :finished_at
+    f.input :state, collection: { 'created': :created, 'running': :running,
+                                  'pending': :pending, 'finished': :finished },
+                    selected: object.state,
+                    label: t('active_admin.label.state_event').capitalize,
+                    include_blank: false
+  end
+  f.actions do
+    f.action :submit, label: t('active_admin.label.send').capitalize, as: :button
+    f.cancel_link admin_event_path(resource.id), label: t('cancel').capitalize, as: :button
+  end
+end

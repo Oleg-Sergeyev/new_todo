@@ -22,6 +22,9 @@ ru:
     localization:     Локализация
     download_book:    скачать книгу
   messages:
+    authorisation_error: ошибка авторизации
+    user_has_been_banned: пользователь заблокирован!
+    user_has_been_moved: пользователь удален!
     questions:
       are_you_sure?:  Вы уверены?      
   top-menu:

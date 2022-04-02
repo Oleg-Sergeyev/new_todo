@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Event do
-  menu priority: 3
+  menu priority: 3, label: I18n.t('active_admin.label.main_events').capitalize
   show title: proc { |event| event.name.truncate(50) }
-  permit_params %i[id user_id name content done finished_at event_id]
+  permit_params %i[id user_id name content done finished_at event_id state]
   actions :index, :show, :update, :edit, :new, :destroy
+  before_action :event_state, only: :update
 
   action_item :new_item, only: :show do
     link_to(I18n.t('active_admin.resources.item.new_model'),
@@ -30,13 +31,18 @@ ActiveAdmin.register Event do
   filter :done
   filter :finished_at
 
+  form partial: 'form_event_edit'
+
   show title: proc { |event| event.name.truncate(50) } do
     attributes_table do
       row :id
       row :name
       row :content
       row I18n.t('active_admin.user').capitalize do
-        User.find(event.user_id).name
+        resource.user.name
+      end
+      row I18n.t('active_admin.label.state_event') do
+        resource.state
       end
       row :finished_at do
         event.finished_at.nil? ? t('active_admin.info.still_in_work').capitalize : event.finished_at
@@ -70,6 +76,28 @@ ActiveAdmin.register Event do
           links.join(' ').html_safe
         end
       end
+    end
+  end
+
+  controller do
+    def event_state
+      case params[:event][:state]
+      when 'created'
+        resource.may_start? ? return : redirect(resource.id)
+      when 'pending'
+        resource.may_pend? ? return : redirect(resource.id)
+      when 'running'
+        resource.may_start? ? return : redirect(resource.id)
+      when 'finished'
+        resource.may_complete? ? return : redirect(resource.id)
+      else
+        redirect(resource.id)
+      end
+    end
+
+    def redirect(id)
+      redirect_to edit_admin_event_path(id),
+                  flash: { error: t('active_admin.messages.state_change_error').capitalize }
     end
   end
 end

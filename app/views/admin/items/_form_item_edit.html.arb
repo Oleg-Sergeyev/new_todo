@@ -1,14 +1,14 @@
 # Form for edit current item
 active_admin_form_for [:admin, resource] do |f|
-  f.inputs t('Change or create: item') do
+  f.inputs t('active_admin.label.change_or_create_item').capitalize do
     f.semantic_errors(*f.object.errors.keys)
     f.input :event_id, as: :hidden
-    f.input :name
-    f.input :done
-    f.input :finished_at
+    f.input :name, as: :text
+    f.input :done, label: t('active_admin.label.done').capitalize
+    f.input :finished_at, label: t('active_admin.label.finished_at').capitalize
   end
   f.actions do
-    f.action :submit, label: t('Отправить'), as: :button
-    f.cancel_link action: 'index', label: t('Отмена'), as: :button
+    f.action :submit, label: t('active_admin.label.send').capitalize, as: :button
+    f.cancel_link "/admin/events/#{resource.event.id}/items/#{resource.id}", label: t('active_admin.label.cancel').capitalize, as: :button
   end
 end

@@ -46,18 +46,15 @@ class User < ApplicationRecord
     state :archived, display: I18n.t('state.archived')
 
     event :on do
-      transitions from: :created, to: :active
-      transitions from: :banned, to: :active
+      transitions from: %i[created banned], to: :active
     end
 
     event :off do
       transitions from: :active, to: :banned
-      transitions from: :banned, to: :archived
     end
 
     event :remove do
-      transitions from: :created, to: :archived
-      transitions from: :banned, to: :archived
+      transitions from: %i[created banned], to: :archived
     end
 
     event :restore do

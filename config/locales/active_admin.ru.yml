@@ -8,8 +8,37 @@ ru:
     items: подпункты
     state: статус
     role: роль
+    content: содержимое
+    pending: приостановлено
     info:
       still_in_work: все еще в работе
+    label:
+      done: исполненно
+      finished_at: завершено(дата)
+      send: отправить
+      state_event: статус задания
+      change: изменить
+      role: роль
+      roles: роли
+      user: пользователь
+      users: пользователи
+      events: задания
+      main_events: основные задания
+      event: задние
+      parent_event: основное задание
+      reports: отчеты
+      email: эл.почта
+      new_password: новый пароль
+      confirm_password: подтвердить пароль
+      users_imports: импорт/экспорт пользователей
+      change_or_create_name_status_role: изменить или добавить (имя, статус, роль)
+      change_or_create_email: изменить или добавить эл.почту
+      change_or_create_event: изменить или создать задание
+      change_or_create_role: изменить или создать роль
+      change_or_create_item: изменить или создать подзадание
+      create_password: создать пароль   
+    messages:
+      state_change_error: ошибка смены статуса
     resources:
       user:
         new_model: Создать пользователя
