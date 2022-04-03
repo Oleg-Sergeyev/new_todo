@@ -18,7 +18,7 @@ class TimeInterval
               @dates.first.beginning_of_day
             end
     final = if @dates.second.nil?
-              @object.maximum(:created_at).to_time.beginning_of_day
+              @object.maximum(:created_at).to_time.end_of_day
             else
               @dates.second.end_of_day
             end

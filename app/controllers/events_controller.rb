@@ -25,7 +25,7 @@ class EventsController < ApplicationController
     @start_date = cookies[:start_date].to_time
     @final_date = cookies[:final_date].to_time
     @users = User.includes(:events)
-    events = one_query
+    events = Event.includes(:user)
     @events = TimeInterval.new([@start_date, @final_date], policy_scope(events), :items)
                           .journal[:rows].page(params[:page]).per(cookies[:rows_count])
   end
@@ -111,7 +111,7 @@ class EventsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:name, :user_name, :content, :done, :user, :created_at, :start_date, :final_date,
+    params.require(:event).permit(:name, :user_name, :content, :user, :created_at, :start_date, :final_date,
                                   :rows_count, files: [])
   end
 
@@ -119,34 +119,23 @@ class EventsController < ApplicationController
     cookies.permanent[:rows_count] = rows_count
     @rows_count = rows_count
     @users = User.includes(:events)
-    events = one_query
-    data = TimeInterval.new([start_date, final_date], policy_scope(events), :items).journal
-    @events = data[:rows].page(params[:page]).per(@rows_count)
-    @start_date = data[:start_date]
-    @final_date = data[:final_date]
-    update_cookies
-    render :index
+    events = Event.includes(:user)
+    check_events_count(events, start_date, final_date)
   end
 
-  def one_query
-    # sql = '(SELECT name FROM users WHERE id = events.user_id) as user_name,
-    #       (SELECT COUNT(*) FROM items WHERE event_id = events.id) as count_items,
-    #       id, name, content, done, user_id, finished_at, created_at'
-    # Event.select(sql)
-    Event.includes(:user)
-    # sql = 'SELECT
-    #         (SELECT name FROM users WHERE id = events.user_id) as user_name,
-    #         id,
-    #         name,
-    #         content,
-    #         done,
-    #         user_id,
-    #         finished_at,
-    #         created_at
-    #         FROM events'
-    # ActiveRecord::Base.connection.exec_query(sql)
-    # User.event.group(:id).count
-    # User.joins(:events).group(:user_id).size
-    # Event.select(:id, { user_id: 'COUNT(id)' }).group(:id)
+  def check_events_count(events, start_date, final_date)
+    if policy_scope(events).count.zero?
+      @events = policy_scope(events).page(params[:page]).per(cookies[:rows_count])
+      @start_date = cookies[:start_date].to_time
+      @final_date = cookies[:final_date].to_time
+      flash[:notice] = 'У пользователя нет заданий!'
+    else
+      data = TimeInterval.new([start_date, final_date], policy_scope(events), :items).journal
+      @events = data[:rows].page(params[:page]).per(@rows_count)
+      @start_date = data[:start_date]
+      @final_date = data[:final_date]
+    end
+    #update_cookies
+    render :index
   end
 end

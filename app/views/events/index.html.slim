@@ -2,7 +2,7 @@
 div class = 'main-container mb-3' style ='margin: 5px; padding: 5px; padding-bottom: 40px;'
   div style ='margin-left: 15px;'
     h1 =t('label.list_events')
-    p
+    p =flash[:notice]
   div id = 'date' class = 'mb-3' style ='margin: 0 10px 0 15px;'
     = render 'form_journal_panel'
   / div id = 'date_view' class = 'mb-3' style ='margin-left: 15px;'

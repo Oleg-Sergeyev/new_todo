@@ -18,7 +18,7 @@ div class = 'mb-3' style ='margin-left: 15px;'
             td = link_to file.blob.filename, rails_blob_path(file, only_path: true)
     p 
       strong ="#{t('activerecord.attributes.event.done')}: "
-      =< @event.done ? t('activerecord.attributes.event.finished') : t('activerecord.attributes.event.not_finished')
+      =< @event.state == 'finished' ? t('activerecord.attributes.event.finished') : t('activerecord.attributes.event.not_finished')
   div class = 'container' style ='padding: 15px;' 
     strong ="#{t('activerecord.models.items')}: "
     table.table.table-striped class ='table table-striped' 

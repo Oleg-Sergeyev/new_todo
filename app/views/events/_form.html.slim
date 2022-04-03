@@ -16,12 +16,10 @@ div id = 'new_event' class = 'mb-3' style ='border: 1px dashed #0d6efd;
       = f.label 'Содержимое', class: 'form-label'
       = f.text_area :content, class: 'form-control form-control-sm'
     .field
-      = f.label :files, class: 'form-label'
-      = f.file_field :files, multiple: true, class: 'form-control'
-
+      = f.label 'Статус', class: 'form-label'
+      = f.select :state, options_for_select(['created', 'running', 'pending', 'finished'], selected: @event.state)
     .field
-      = f.label 'Выполнено', class: 'form-label'
-      = f.check_box :done, class: 'form-check-input'
-    
+      = f.label :files, class: 'form-label'
+      = f.file_field :files, multiple: true, class: 'form-control'    
     .actions 
       = f.submit 'Сохранить', class: 'btn btn-primary mb', id:'save_new_event_btn'
