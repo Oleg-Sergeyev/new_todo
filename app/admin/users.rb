@@ -35,14 +35,13 @@ ActiveAdmin.register User do
     def user_state
       case params[:user][:state]
       when 'active'
-        resource.may_on? ? return : redirect(resource.id)
+        return if resource.may_on?
       when 'banned'
-        redirect(resource.id) unless resource.may_off? || resource.may_restore?
+        return if resource.may_off? || resource.may_restore?
       when 'archived'
-        resource.may_remove? ? return : redirect(resource.id)
-      else
-        redirect(resource.id)
+        return if resource.may_remove?
       end
+      redirect(resource.id)
     end
 
     def redirect(id)

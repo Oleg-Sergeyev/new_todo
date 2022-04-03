@@ -20,9 +20,8 @@ ActiveAdmin.register Event do
         tag.br +
         event.content.truncate(150)
     end
-    column :done
-    column :user
-    actions
+    column I18n.t('active_admin.label.state_event').capitalize, &:state
+    column I18n.t('active_admin.label.user').capitalize, &:user
   end
 
   filter :id
@@ -44,9 +43,10 @@ ActiveAdmin.register Event do
       row I18n.t('active_admin.label.state_event') do
         resource.state
       end
-      row :finished_at do
-        event.finished_at.nil? ? t('active_admin.info.still_in_work').capitalize : event.finished_at
-      end
+      row :finished_at
+      # row :finished_at do
+      #   event.finished_at.nil? ? t('active_admin.info.still_in_work').capitalize : event.finished_at
+      # end
       row :updated_at
       row :created_at
       row I18n.t('active_admin.file').capitalize do
@@ -83,16 +83,18 @@ ActiveAdmin.register Event do
     def event_state
       case params[:event][:state]
       when 'created'
-        resource.may_start? ? return : redirect(resource.id)
+        return if resource.may_start?
       when 'pending'
-        resource.may_pend? ? return : redirect(resource.id)
+        return if resource.may_pend?
       when 'running'
-        resource.may_start? ? return : redirect(resource.id)
+        return if resource.may_start?
       when 'finished'
-        resource.may_complete? ? return : redirect(resource.id)
-      else
-        redirect(resource.id)
+        if resource.may_complete?
+          Event.update(resource.id, finished_at: DateTime.now)
+          return
+        end
       end
+      redirect(resource.id)
     end
 
     def redirect(id)

@@ -39,7 +39,7 @@ class Event < ApplicationRecord
 
   def count_events
     user = User.where(id: user_id)
-    if done
+    if state
       user.limit(1).update(events_ffd_count: user.pluck(:events_ffd_count).first + 1)
     else
       user.limit(1).update(events_unffd_count: user.pluck(:events_unffd_count).first + 1)
@@ -48,7 +48,7 @@ class Event < ApplicationRecord
 
   def recount_events
     user = User.where(id: user_id)
-    if done
+    if state
       user.limit(1).update(events_ffd_count: user.pluck(:events_ffd_count).first - 1)
     else
       user.limit(1).update(events_unffd_count: user.pluck(:events_unffd_count).first - 1)

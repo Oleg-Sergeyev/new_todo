@@ -30,16 +30,16 @@ users = User.create! hash_users
 hash_events = 20.times.map do
   {
     name: FFaker::HipsterIpsum.phrase,
-    content: FFaker::HipsterIpsum.paragraphs,
+    content: FFaker::HipsterIpsum.paragraphs.join,
     user: users.sample,
-    done: [true, false].sample
+    #done: [true, false].sample
   }
 end
 
 events = Event.create! hash_events
 hash_items = 200.times.map do
   {
-    name: FFaker::HipsterIpsum.paragraph,
+    name: FFaker::HipsterIpsum.paragraph.join,
     event: events.sample,
     done: [true, false].sample
   }

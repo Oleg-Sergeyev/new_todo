@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_30_205946) do
+ActiveRecord::Schema.define(version: 2022_04_03_172122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2022_03_30_205946) do
   create_table "events", comment: "Список дел", force: :cascade do |t|
     t.string "name", comment: "Заголовок"
     t.text "content", comment: "Детальное описание"
-    t.boolean "done", default: false, comment: "Статус: завершено (true), или нет (false)"
     t.datetime "finished_at", comment: "Дата и время завершения дела"
     t.bigint "user_id", comment: "Внешний ключ для связи с таблицей users"
     t.datetime "created_at", precision: 6, null: false
