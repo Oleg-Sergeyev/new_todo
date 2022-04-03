@@ -47,14 +47,17 @@ class User < ApplicationRecord
 
     event :on do
       transitions from: %i[created banned], to: :active
+      transitions from: :active, to: :active
     end
 
     event :off do
       transitions from: :active, to: :banned
+      transitions from: :banned, to: :banned
     end
 
     event :remove do
       transitions from: %i[created banned], to: :archived
+      transitions from: :archived, to: :archived
     end
 
     event :restore do

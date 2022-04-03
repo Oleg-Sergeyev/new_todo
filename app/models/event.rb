@@ -24,14 +24,17 @@ class Event < ApplicationRecord
 
     event :start do
       transitions from: %i[created pending], to: :running
+      transitions from: :running, to: :running
     end
 
     event :pend do
       transitions from: %i[running created], to: :pending
+      transitions from: :pending, to: :pending
     end
 
     event :complete do
       transitions from: :running, to: :finished
+      transitions from: :finished, to: :finished
     end
   end
 
