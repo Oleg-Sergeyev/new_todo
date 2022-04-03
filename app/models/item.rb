@@ -6,7 +6,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
 
-  belongs_to :event
+  belongs_to :event, touch: true
   has_one :has_user, through: :event, source: :user
 
   private

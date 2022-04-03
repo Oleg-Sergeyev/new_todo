@@ -52,6 +52,7 @@ gem 'caxlsx'
 gem 'roo'
 gem 'aasm'
 gem 'aasm-diagram'
+gem 'redis-rails'
 
 
 group :development, :test do

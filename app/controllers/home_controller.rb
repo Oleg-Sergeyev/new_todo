@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   end
 
   def log_start
-    Rails.logger.info '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+    #Rails.logger.info '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
   end
 
   alias log_finish log_start

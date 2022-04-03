@@ -11,8 +11,9 @@ div class = 'main-container mb-3' style ='margin: 5px; padding: 5px; padding-bot
   /   b  - 
   /   b =l(@final_date)
   div id = 'paginate' class = 'events-paginate mb-3' style ='margin-left: 15px;'
-    = paginate @events  
-  == render 'table_events'
+    = paginate @events
+  - cache [current_user, :events_list, params[:page]] do  
+    == render 'table_events', cached: true
   div id = 'date_view' class = 'mb-3' style ='margin-left: 15px;'
     = link_to t('label.create_new_event'), new_event_path, class: 'btn btn-primary'
   div id = 'paginate' class = 'events-paginate mb-1' style ='margin-left: 15px;'

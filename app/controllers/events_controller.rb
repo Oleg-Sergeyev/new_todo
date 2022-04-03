@@ -112,7 +112,7 @@ class EventsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:name, :user_name, :content, :user, :created_at, :start_date, :final_date,
-                                  :rows_count, files: [])
+                                  :rows_count, :state, files: [])
   end
 
   def render_interval_query(rows_count, start_date, final_date)
@@ -135,7 +135,7 @@ class EventsController < ApplicationController
       @start_date = data[:start_date]
       @final_date = data[:final_date]
     end
-    #update_cookies
+    update_cookies
     render :index
   end
 end

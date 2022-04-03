@@ -3,9 +3,7 @@
 class StatsController < ApplicationController
   def index
     @stat_users = get_data # User.order(:name)
-    Rails.logger.info "*********#{@stat_users}************"
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
-    # get_data
   end
 
   def get_data

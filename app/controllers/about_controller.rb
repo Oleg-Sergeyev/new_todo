@@ -6,7 +6,6 @@ class AboutController < ApplicationController
   def index; end
 
   def log_start
-    Rails.logger.info '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
   end
 
   alias log_finish log_start
@@ -15,8 +14,4 @@ class AboutController < ApplicationController
     Rails.logger.info params.inspect
     Rails.logger.info params[:locale]
   end
-
-  # def log_notes
-  #   Rails.logger.info '+++++++++++++++++++++++++++++++++++++++++++++++++++++++'
-  # end
 end
