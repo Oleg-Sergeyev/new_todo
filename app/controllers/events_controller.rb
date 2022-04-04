@@ -4,7 +4,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authenticate_user!
-
+  
   def edit
     authorize @event
   end
@@ -20,6 +20,8 @@ class EventsController < ApplicationController
   @rows_count = 5
 
   def index
+    #expires_now if params[:rows_count] != cookies[:rows_count]
+    Rails.logger.info "******************* COOKIES #{cookies[:update_page]} ****************************"
     default_cookies(@rows_count) unless cookies[:start_date] || cookies[:final_date]
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
     @start_date = cookies[:start_date].to_time
@@ -116,7 +118,7 @@ class EventsController < ApplicationController
   end
 
   def render_interval_query(rows_count, start_date, final_date)
-    cookies.permanent[:rows_count] = rows_count
+    #cookies.permanent[:rows_count] = rows_count
     @rows_count = rows_count
     @users = User.includes(:events)
     events = Event.includes(:user)
@@ -125,7 +127,7 @@ class EventsController < ApplicationController
 
   def check_events_count(events, start_date, final_date)
     if policy_scope(events).count.zero?
-      @events = policy_scope(events).page(params[:page]).per(cookies[:rows_count])
+      @events = policy_scope(events).page(params[:page]).per(@rows_count)
       @start_date = cookies[:start_date].to_time
       @final_date = cookies[:final_date].to_time
       flash[:notice] = 'У пользователя нет заданий!'
@@ -134,6 +136,7 @@ class EventsController < ApplicationController
       @events = data[:rows].page(params[:page]).per(@rows_count)
       @start_date = data[:start_date]
       @final_date = data[:final_date]
+      cookies.permanent[:rows_count] = @rows_count
     end
     update_cookies
     render :index

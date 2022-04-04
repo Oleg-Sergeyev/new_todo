@@ -1,7 +1,10 @@
-div class="row align-items-center justify-content-center"
-  div class="align-items-center justify-content-center d-flex"
-    p ="Marketing and Software Development for the Future!"
-  div class="col" style="padding-top: 50px;"
-    .rounded_mx-auto_d-block
-      .text-center
-        = image_tag "about_image_resize.png", class: :rounded
+- cache current_user, expires_in: 1.hour do
+  div class="row align-items-center justify-content-center"
+    div class="align-items-center justify-content-center d-flex flex-column"
+      p ="Marketing and Software Development for the Future!"
+      .h_about.text-center
+        = h "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 1).join}"
+    div class="col" style="padding-top: 50px;"
+      .rounded_mx-auto_d-block
+        .text-center
+          = image_tag "about_image_resize.png", class: :rounded

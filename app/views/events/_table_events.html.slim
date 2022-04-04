@@ -1,32 +1,32 @@
 div id = 'table_view' class = 'mb-3' style ='margin: 10px;'
-    table.table.table-striped class ='table table-striped' style ='margin: 5px;'
-      thead
+  table.table.table-striped class ='table table-striped' style ='margin: 5px;'
+    thead
+      tr
+        th N
+        th Пользователь
+        th Задание
+        th = t('Images') 
+        th Дата создания
+        th Статус
+        th Подзадания 
+        th Изменить
+        th Удалить
+    tbody
+      - @events.order(created_at: :asc).each_with_index do |event, index|
         tr
-          th N
-          th Пользователь
-          th Задание
-          th = t('Images') 
-          th Дата создания
-          th Статус
-          th Подзадания 
-          th Изменить
-          th Удалить
-      tbody
-        - @events.order(created_at: :asc).each_with_index do |event, index|
-          tr
-            td = (index + 1) + (cookies[:rows_count].to_i * @events.current_page) - cookies[:rows_count].to_i
-            td = event.user.name
-            td = link_to event.name, event
-            - if event.files.attached?
-              td
-                table
-                  - event.files.each_with_index do |file, i|
-                    tr
-                      td = link_to truncate(file.blob.filename.to_s, length: 20), rails_blob_path(file, only_path: true)
-            - else
-              td = ''    
-            td = event.created_at.strftime("%d-%m-%Y, %H:%M")
-            td = "V" if event.state == 'finished'
-            td = event.items.count
-            td = link_to t('label.edit'), edit_event_path(event)
-            td = link_to t('label.destroy'), event, data: { confirm: 'Are you sure?' }, method: :delete
+          td = (index + 1) + (cookies[:rows_count].to_i * @events.current_page) - cookies[:rows_count].to_i
+          td = event.user.name
+          td = link_to event.name, event
+          - if event.files.attached?
+            td
+              table
+                - event.files.each_with_index do |file, i|
+                  tr
+                    td = link_to truncate(file.blob.filename.to_s, length: 20), rails_blob_path(file, only_path: true)
+          - else
+            td = ''    
+          td = event.created_at.strftime("%d-%m-%Y, %H:%M")
+          td = "V" if event.state == 'finished'
+          td = event.items.count
+          td = link_to t('label.edit'), edit_event_path(event)
+          td = link_to t('label.destroy'), event, data: { confirm: 'Are you sure?' }, method: :delete

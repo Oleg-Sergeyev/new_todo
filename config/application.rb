@@ -32,25 +32,22 @@ module Todo
     #
     # config.time_zone = "Central Time (US & Canada)"
 
-    # config.eager_load_paths << Rails.root.join('lib/classes')
-    # config.eager_load_paths << Rails.root.join('/services')
+    # if Rails.env.production? || ENV['CACHE_TURN_ON'] == 'ON'
+    #   config.action_controller.perform_caching = true
+    #   config.action_controller.enable_fragment_cache_logging = true
+    #   config.active_record.cache_versioning = false
 
-    # config.paths.add config.root.join('app', 'api', 'helpers').to_s, eager_load: true, recursive: true
-    # config.paths.add config.root.join('app/api/**/').to_s, eager_load: true, recursive: true
-    # config.paths.add config.root.join('app', 'api', 'entities').to_s, eager_load: true, recursive: true
-    # config.autoload_paths += Dir["#{Rails.root}/app/api/**/"]
-    # config.eager_load_paths += Dir["#{Rails.root}/app/api/**/"]
-    # config.eager_load_paths << Rails.root.join('app', 'api', 'helpers')
-    # config.eager_load_paths << Rails.root.join('app', 'api', 'entities')
+    #   config.cache_store = :redis_store, {
+    #     host: ENV['REDIS_HOST'],
+    #     port: ENV['REDIS_PORT'],
+    #     db: ENV['REDIS_DB'],
+    #     expires_in: 90.minutes
+    #   }
+    # else
+    #   config.action_controller.perform_caching = false
+    #   config.cache_store = :null_store
+    # end
 
-    # config.paths.add Rails.root.join('lib').to_s, eager_load: true
-    # config.paths.add Rails.root.join('app', 'api', 'helpers').to_s, eager_load: true
-    # config.paths.add Rails.root.join('app', 'api', 'entities').to_s, eager_load: true
-    # config.autoload_paths += Dir["#{config.root}/app/**/"]
-
-    # config.autoload_paths += %W(#{config.root}/app/env)
-    # config.paths.add Rails.root.join('lib').to_s, eager_load: true
-    # config.paths.add Rails.root.join('app/api/helpers').to_s, eager_load: true
     config.eager_load_paths << "#{Rails.root}/lib"
     config.paths.add Rails.root.join('app/lib').to_s, eager_load: true
     config.eager_load_paths << "#{Rails.root}/public/images/upload/**"
@@ -60,27 +57,10 @@ module Todo
     config.eager_load_paths << Rails.root.join('lib/classes')
     config.eager_load_paths << Rails.root.join('/services')
 
-    # config.eager_load_paths += %W( #{config.root}/api/lib )
-
-    # config.autoload_paths << "#{Rails.root}/app/api/**/"
-    # config.eager_load_paths << "#{Rails.root}/app/api/**/"
-
-    # config.eager_load_paths << Rails.root.join('app', 'api', 'methods')
-    # config.paths.add File.join('app', 'api', 'helpers'), glob: File.join('**', '*.rb')
-
-    # require_dependency Rails.root.join('app/api/helpers/')
-    # config.autoload_paths += Dir["#{config.root}/app/api/entities/**/"]
-    # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-    # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
-    # config.autoloader = :classic
-    # config.eager_load = true
-    # config.eager_load_paths << "#{Rails.root}/app/api/**"
-    #config.autoloader = :classic
     config.active_job.queue_adapter = :resque
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
     config.time_zone = 'Moscow'
-
     # config.active_record.default_timezone = :utc
     # Don't generate system test files.
     config.generators.system_tests = nil

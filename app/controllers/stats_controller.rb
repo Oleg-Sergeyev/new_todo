@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class StatsController < ApplicationController
+  before_action :calc_events
+
   def index
     @stat_users = get_data # User.order(:name)
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
@@ -20,5 +22,14 @@ class StatsController < ApplicationController
            ORDER BY users.name ASC;'
     ActiveRecord::Base.connection.exec_query(sql)
     # Rails.logger.info "*********#{ActiveRecord::Base.connection.exec_query(sql).last}************"
+  end
+
+  private
+
+  def calc_events
+    User.all.each do |user|
+      Rails.cache.write(user.name, user.events.count)
+      #Rails.logger.info "++++++++++++  #{Rails.cache.read(user.name)} ++++++++++++"
+    end
   end
 end

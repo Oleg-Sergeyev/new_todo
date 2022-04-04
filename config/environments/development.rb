@@ -25,9 +25,9 @@ Rails.application.configure do
     config.active_record.cache_versioning = false
     #config.cache_store = :memory_store
     config.cache_store = :redis_store, {
-      host: 'localhost',
-      port: 6379,
-      db: 0,
+      host: ENV['REDIS_HOST'],
+      port: ENV['REDIS_PORT'],
+      db: ENV['REDIS_DB'],
       expires_in: 90.minutes
     }
     config.public_file_server.headers = {
