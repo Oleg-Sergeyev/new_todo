@@ -4,7 +4,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  
+
   def edit
     authorize @event
   end
@@ -20,8 +20,6 @@ class EventsController < ApplicationController
   @rows_count = 5
 
   def index
-    #expires_now if params[:rows_count] != cookies[:rows_count]
-    Rails.logger.info "******************* COOKIES #{cookies[:update_page]} ****************************"
     default_cookies(@rows_count) unless cookies[:start_date] || cookies[:final_date]
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
     @start_date = cookies[:start_date].to_time

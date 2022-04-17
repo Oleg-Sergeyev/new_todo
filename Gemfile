@@ -6,9 +6,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.2'
 
 gem 'activeadmin'
-#gem 'active_admin_sidebar'
-#gem 'arctic_admin'
-#gem 'active_admin-subnav'
+# gem 'active_admin_sidebar'
+# gem 'arctic_admin'
+# gem 'active_admin-subnav'
 gem 'bcrypt'
 # gem 'bootstrap-sass'
 gem 'cancancan'
@@ -27,8 +27,8 @@ gem 'sass-rails', '>= 6'
 gem 'bootstrap', '~> 5.0.2'
 gem 'breadcrumbs_on_rails'
 gem 'devise-i18n'
-gem 'font-awesome-sass', '~> 5.15.1'
 gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 5.15.1'
 gem 'grape'
 gem 'grape-entity'
 gem 'grape-kaminari'
@@ -40,20 +40,22 @@ gem 'rails-i18n', '~> 6.0'
 gem 'webpacker', '~> 5.0'
 # gem 'letter_opener'
 gem 'dotenv-rails'
-gem 'whenever', require: false
+gem 'image_processing'
 gem 'resque'
 gem 'resque-scheduler'
-gem 'image_processing'
-gem 'slim-rails'
 gem 'rmagick'
+gem 'slim-rails'
+gem 'whenever', require: false
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
-gem 'caxlsx'
-gem 'roo'
 gem 'aasm'
 gem 'aasm-diagram'
+gem 'bootsnap', '>= 1.4.4', require: false
+gem 'caxlsx'
+gem 'dry-initializer'
+gem 'dry-struct'
+gem 'dry-validation'
 gem 'redis-rails'
-
+gem 'roo'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -72,7 +74,6 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'lorem_ipsum_amet', '~> 0.6.2'
   gem 'rack-mini-profiler', '~> 2.0'
-  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

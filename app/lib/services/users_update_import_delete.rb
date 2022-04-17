@@ -40,7 +40,6 @@ module Services
             next
           end
           update(name, email, roles[code])
-
         end
         puts "Read #{num_rows} rows"
       end
