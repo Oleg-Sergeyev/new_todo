@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 module Contracts
+  # class Unit
   class Unit < Contracts::Application
+    include Callable
+    include Currency
+
     def self.call(options)
       new.call(options)
     end
@@ -19,6 +23,10 @@ module Contracts
 
     rule(:name) do
       key.failure('длина названия превышает 80 символов') if value.size > 80
+    end
+
+    rule(:currency) do
+      key.failure('неверное название валюты') unless currency_world.include?(value)
     end
 
     rule(:attachments) do
