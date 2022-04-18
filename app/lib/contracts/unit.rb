@@ -3,7 +3,6 @@
 module Contracts
   # class Unit
   class Unit < Contracts::Application
-    include Callable
     include Currency
 
     def self.call(options)
@@ -26,7 +25,7 @@ module Contracts
     end
 
     rule(:currency) do
-      key.failure('неверное название валюты') unless currency_world.include?(value)
+      key.failure('неверное название валюты') unless char_code.include?(value)
     end
 
     rule(:attachments) do
