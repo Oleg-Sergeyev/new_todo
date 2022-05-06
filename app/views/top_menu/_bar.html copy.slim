@@ -1,0 +1,58 @@
+= stylesheet_link_tag 'layouts'
+navbar class = "navbar navbar-expand-lg navbar-dark bg-primary"
+  .container-fluid
+    a.navbar-brand[href="#"]
+      | To*Do
+    button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse.justify-content-between
+      ul.nav.navbar-nav.navbar-left.mr-auto 
+        li.navbar-item
+        = link_to_unless_current(t('top-menu.home'), { controller: "/home", action: "index" }, class: "nav-link"){ link_to(t('top-menu.home'), { controller: "home", action: "index" }, class: "nav-link disabled") }
+        li.navbar-item
+        = link_to_unless_current(t('top-menu.events'), { controller: "/events", action: "index" }, class: "nav-link") { link_to(t('top-menu.events'), { controller: "events", action: "index" }, class: "nav-link disabled") } 
+        li.navbar-item
+        = link_to_unless_current( t('top-menu.stats'), { controller: "/stats", action: "index" }, class: "nav-link"){ link_to( t('top-menu.stats'), { controller: "stats", action: "index" }, class: "nav-link disabled") }
+        - if current_user && current_user.admin?
+          li.navbar-item
+          = link_to_unless_current( t('top-menu.admin'), { controller: "/admin/users", action: "index" }, class: "nav-link"){ link_to( t('top-menu.admin'), { controller: "admin/users", action: "index" }, class: "nav-link disabled") }
+        li.navbar-item
+        = link_to_unless_current( t('top-menu.about'), { controller: "/about", action: "index" }, class: "nav-link"){ link_to( t('top-menu.about'), { controller: "stats", action: "index" }, class: "nav-link disabled") }         
+        li.navbar-item
+      /ul.nav.navbar-nav.navbar-center.mr-auto
+        li.navbar-item
+          form.form-inline role="search"
+            .form-group.row
+              .col
+                input.form-control type="text" placeholder="Search"
+              .col  
+                button.btn.btn-primary.mb-2 type="submit" Submit
+      ul.nav.navbar-nav.navbar-right
+      - if user_signed_in?
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#" role="button" 
+            = current_user.name
+          ul.dropdown-menu.dropdown-menu-end role="menu" aria-labelledby="navbarDropdown" 
+            /- if current_user.default?
+            li
+              = link_to t('label.edit_profile'), edit_user_registration_path
+            li 
+              = link_to "#{t('label.localization')} [ #{language_link_name} ]", toggle_path, method: :post 
+            li
+              = link_to t('label.log_out'), destroy_user_session_path, method: :delete
+        li.nav-item
+        - if current_user.avatar.attached?
+          = image_tag current_user.avatar.variant(resize: '50x50'), class: 'img-fluid rounded-circle'
+        - else
+          i.fa.fa-user style='font-size:28px; color: rgb(142, 187, 254);'       
+      - else
+        li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#" role="button" 
+          = t('label.come_in')
+        ul.dropdown-menu.dropdown-menu-end aria-labelledby="navbarDropdown" 
+          li
+            = link_to t('label.log_in'), new_user_session_path, class: "nav-link", style:"color:black;"
+          li
+            = link_to t('label.registration'), new_user_registration_path, class: "nav-link", style:"color:black;"
+          li 
+            = link_to "#{t('label.localization')} [ #{language_link_name} ]", toggle_path, method: :post 
