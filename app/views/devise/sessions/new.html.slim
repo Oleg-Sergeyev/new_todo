@@ -1,27 +1,33 @@
 h5 = flash[:notice]
-.form-group.col-auto[align="center"]
-  label.control-label
-    h2 = t("label.log_in")
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .input-group.col-6.mb-3#div_input_email
-        input#input_email.col-6.form-control[type="email" placeholder="user@example.com" aria-describedby="basic-addon2"]
-        span.col-4#basic-addon2.input-group-text
-          | Email
-      .warning.col-10     
-        label.form-label[for="input_email" id="label_wrong_email"] 
-          = " "
-      .input-group.col-6.mb-3
-        input#input_email.col-6.form-control[type="password" placeholder="password" aria-describedby="basic-addon2"]
-        span.col-4#basic-addon2.input-group-text
-          | Password
-      .row.mb-3
-        - if devise_mapping.rememberable?
-          .col-md-8
-            .input-group.align-middle.d-inline-block
-              input#remember_me.form-check-input[type="checkbox" value="" aria-describedby="basic-addon2"]
-              label.form-check-label.ms-1[for="remember_me"]
-                = t("remember_me")
-        .col-md-4
-          button.btn.btn-primary[type="submit"]
-            | Submit
-    = render "devise/shared/links"
+.form-group.col-12[align="center"]
+  .layer-1.col-sm-6.col-md-6.col-lg-4[align="center"]
+    label.control-label
+      .mb-4
+        h2 = t("label.log_in")
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .input-group.col-6.mb-3#div_input_email
+          /input#input_email.col-6.form-control[type="email" placeholder="user@example.com" aria-describedby="basic-addon2"]
+          = f.email_field :email, autofocus: true, autocomplete: "email", id:"input_email", class:"col-6 form-control", placeholder:"user@example.com"
+          span.col-4#basic-addon2.input-group-text
+            | Email
+        .mb-1.d-flex    
+          label.form-label[for="input_email" id="label_wrong_email"] 
+            = " "
+        .input-group.col-6.mb-3
+          /input#password.col-6.form-control[type="password" placeholder="password" aria-describedby="basic-addon2"]
+          = f.password_field :password, autocomplete: "current-password", class:"col-6 form-control", placeholder:"password"
+          span.col-4#basic-addon2.input-group-text
+            | Password
+        .row.mb-3
+          - if devise_mapping.rememberable?
+            .col-md-6
+              .input-group.align-middle.d-inline-block
+                /input#remember_me.form-check-input[type="checkbox" value="" aria-describedby="basic-addon2"]
+                = f.check_box :remember_me, class:"form-check-input", value:"", type:"checkbox"
+                label.form-check-label.ms-1[for="remember_me"]
+                  = t("remember_me")
+          .col-md-6
+            button#submit_log_in.submit.btn.btn-secondary[type="submit"]
+              = t("label.log_in")
+      .mb-3
+        = render "devise/shared/links"
