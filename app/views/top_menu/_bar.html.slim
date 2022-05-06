@@ -24,11 +24,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
           ul.dropdown-menu.dropdown-menu-end role="menu" aria-labelledby="navbarDropdown" 
             /- if current_user.default?
             li
-              = link_to t('label.edit_profile'), edit_user_registration_path
+              = link_to t('label.edit_profile'), edit_user_registration_path, class: "nav-link"
             li 
-              = link_to "#{t('label.localization')} [ #{language_link_name} ]", toggle_path, method: :post 
+              = link_to "#{t('label.localization')} [ #{language_link_name} ]", toggle_path, class: "nav-link", method: :post 
             li
-              = link_to t('label.log_out'), destroy_user_session_path, method: :delete
+              = link_to t('label.log_out'), destroy_user_session_path, class: "nav-link", method: :delete
         li.nav-item
         - if current_user.avatar.attached?
           = image_tag current_user.avatar.variant(resize: '50x50'), class: 'img-fluid rounded-circle'
