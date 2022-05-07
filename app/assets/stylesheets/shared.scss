@@ -1,10 +1,16 @@
 
-// .navbar-nav .nav-link {
-//   color: rgb(100, 100, 100);
-//   text-decoration: none;
-// }
+.devise-links{
+  margin: 8px;
+}
 
-a, a:link { 
-  text-decoration: none;
-  color: grey;
-} 
+.devise-links {
+  .devise-help-links, a{
+    color: grey;
+  }
+  .devise-help-links, a, a:link{
+    color: grey;
+  }
+  .devise-help-links a, a:hover{
+    color: black;
+  }
+}
