@@ -9,6 +9,21 @@ margin: 0;
 padding: 0;
 }
 
+.wrapper{
+  display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.content {
+	/*flex: 1 0 auto;*/
+  min-height: calc(100vh - 105px);
+}
+
+.footer {
+	flex: 0 0 auto;
+}
+
 #id_copyright {
 color:white; 
 margin: 0 20px 0 0;
@@ -56,6 +71,10 @@ color: rgb(255, 255, 255);
 .dropdown-menu.show {
   display: block;
   background-color: #0d6efd;
+}
+
+.fixed-bottom{
+  position: relative;
 }
 
 @media (max-width: 979px){

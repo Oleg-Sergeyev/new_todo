@@ -9,7 +9,9 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application','data-turbolinks-track': 'reload'
   body
-    .container
+    .wrapper
       = render "top_menu/bar"
-      = yield
-      = render "bottom_menu/footer"    
+      .content
+        = yield
+      .footer
+        = render "bottom_menu/footer"    

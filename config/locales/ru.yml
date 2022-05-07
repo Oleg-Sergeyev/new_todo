@@ -3,9 +3,12 @@ ru:
     formats:
       default: '%d-%m-%Y, %H:%M'
   label:
+    our_address:      Наш адрес
     log_in:           Авторизация
     log_out:          Выход
     come_in:          Войти
+    password:         Пароль
+    email:            Эл.почта
     hello:            Привет, %s
     edit_profile:     Изменить данные
     registration:     Регистрация
@@ -21,6 +24,10 @@ ru:
     new_item:         Новое подзадание
     localization:     Локализация
     download_book:    скачать книгу
+    remember_me:      Запомнить меня
+    sign_up:          Зарегистрироваться
+    forgot_your_password?: Забыли пароль?
+    didn't_receive_confirmation_instructions?: Не получили инструкций подтверждения?
   messages:
     authorisation_error: ошибка авторизации
     user_has_been_banned: пользователь заблокирован!

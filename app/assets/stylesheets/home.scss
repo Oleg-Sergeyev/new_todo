@@ -1,6 +1,10 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.container-home-content{
+  display: flex; 
+  justify-content: center;
+}
 
 .happy_ny_iamge{
   box-shadow: 4px 6px 8px 0px rgba(34, 60, 80, 0.2); 
@@ -32,7 +36,8 @@
   box-shadow: 2px 6px 8px 0px rgba(34, 60, 80, 0.2);*/
 }
 .carousel, .slide, .carousel-dark{
-  width: 70%;
+  max-width: 600px;
+  max-height: 600px;
 }
 .container-fluid, .carousel, .text-center{
   vertical-align: middle;

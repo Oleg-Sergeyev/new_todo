@@ -3,6 +3,7 @@ en:
     formats:
       default: '%m/%d/%Y, %H:%M'
   label:
+    our_address:      Our address
     log_in:           Authorization
     log_out:          Logout
     come_in:          Come in
@@ -19,6 +20,10 @@ en:
     update:           Update
     new_item:         New item
     localization:     Localization
+    remember_me:      Remember Me
+    sign_up:          Sign up
+    forgot_your_password?: Forgot your password?
+    didn't_receive_confirmation_instructions?: Didn't receive confirmation instructions?
   messages:
     questions:
       are_you_sure?:  Are you sure?  

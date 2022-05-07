@@ -9,7 +9,7 @@ h5 = flash[:notice]
           /input#input_email.col-6.form-control[type="email" placeholder="user@example.com" aria-describedby="basic-addon2"]
           = f.email_field :email, autofocus: true, autocomplete: "email", id:"input_email", class:"col-6 form-control", placeholder:"user@example.com"
           span.col-4#basic-addon2.input-group-text
-            | Email
+            = t('label.email')
         .mb-1.d-flex    
           label.form-label[for="input_email" id="label_wrong_email"] 
             = " "
@@ -17,7 +17,7 @@ h5 = flash[:notice]
           /input#password.col-6.form-control[type="password" placeholder="password" aria-describedby="basic-addon2"]
           = f.password_field :password, autocomplete: "current-password", class:"col-6 form-control", placeholder:"password"
           span.col-4#basic-addon2.input-group-text
-            | Password
+            = t('label.password')
         .row.mb-3
           - if devise_mapping.rememberable?
             .col-md-6
@@ -25,7 +25,7 @@ h5 = flash[:notice]
                 /input#remember_me.form-check-input[type="checkbox" value="" aria-describedby="basic-addon2"]
                 = f.check_box :remember_me, class:"form-check-input", value:"", type:"checkbox"
                 label.form-check-label.ms-1[for="remember_me"]
-                  = t("remember_me")
+                  = t("label.remember_me")
           .col-md-6
             button#submit_log_in.submit.btn.btn-secondary[type="submit"]
               = t("label.log_in")
