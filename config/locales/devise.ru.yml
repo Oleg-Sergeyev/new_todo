@@ -4,6 +4,9 @@ ru:
   devise:
     label:
       role: "Права"
+      password:         "Пароль"
+      email:            "Эл.почта"
+      localization:      "Локализация"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."

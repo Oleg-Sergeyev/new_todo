@@ -187,6 +187,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (2.20.0)
+      i18n (>= 1.8.11, < 2)
     ffaker (2.20.0)
     ffi (1.15.4)
     font-awesome-rails (4.7.0.8)
@@ -519,6 +521,7 @@ DEPENDENCIES
   dry-validation
   erb_lint
   factory_bot_rails
+  faker
   ffaker
   font-awesome-rails
   font-awesome-sass (~> 5.15.1)

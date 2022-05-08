@@ -5,6 +5,7 @@ require 'mail'
 
 class EmailsController < ApplicationController
   def index
+    I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
     # connection = Net::IMAP.new(ENV['SERVER'], ENV['IMAP_PORT'], true, nil)
     connection = Net::IMAP.new(ENV['SERVER'], ENV['IMAP_PORT'])
     connection.authenticate('LOGIN', ENV['EMAIL_LOGIN'], ENV['EMAIL_PASSWORD'])

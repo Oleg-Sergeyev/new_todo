@@ -25,8 +25,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
             /- if current_user.default?
             li
               = link_to t('label.edit_profile'), edit_user_registration_path, class: "nav-link"
-            li 
-              = link_to "#{t('label.localization')} [ #{language_link_name} ]", toggle_path, class: "nav-link", method: :post 
+            li
+              = link_to "#{t('label.localization')} [#{language_link_name}]", toggle_path, class: "nav-link", method: :post
             li
               = link_to t('label.log_out'), destroy_user_session_path, class: "nav-link", method: :delete
         li.nav-item

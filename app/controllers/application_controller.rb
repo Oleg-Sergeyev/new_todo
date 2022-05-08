@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
   # before_action :dont_allow_admin_update_profile
   before_action :dont_allow_default_show_users
   before_action :check_user_state
+  before_action do
+    I18n.locale = session[:locale]
+  end
   add_flash_types :info, :error, :warning
 
   def after_sign_in_path_for(user)

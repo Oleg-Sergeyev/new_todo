@@ -26,6 +26,7 @@ ru:
     download_book:    скачать книгу
     remember_me:      Запомнить меня
     sign_up:          Зарегистрироваться
+    localization:     Локализация
     forgot_your_password?: Забыли пароль?
     didn't_receive_confirmation_instructions?: Не получили инструкций подтверждения?
   messages:

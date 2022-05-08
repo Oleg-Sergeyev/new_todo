@@ -32,7 +32,7 @@ en:
     stats:   Stats
     events:  Events
     admin:   Admin
-    about:   Abiut
+    about:   About
   activerecord:
     models:
       user:    Users

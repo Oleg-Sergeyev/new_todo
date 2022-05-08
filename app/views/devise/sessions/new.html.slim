@@ -2,7 +2,7 @@ h5 = flash[:notice]
 .form-group.col-12[align="center"]
   .layer-1.col-sm-6.col-md-6.col-lg-4[align="center"]
     label.control-label
-      .mb-4
+      .mb-4.mt-4
         h2 = t("label.log_in")
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .input-group.col-6.mb-3#div_input_email
@@ -17,7 +17,7 @@ h5 = flash[:notice]
           /input#password.col-6.form-control[type="password" placeholder="password" aria-describedby="basic-addon2"]
           = f.password_field :password, autocomplete: "current-password", class:"col-6 form-control", placeholder:"password"
           span.col-4#basic-addon2.input-group-text
-            = t('label.password')
+            = t('devise.label.password')
         .row.mb-3
           - if devise_mapping.rememberable?
             .col-md-6
@@ -31,3 +31,5 @@ h5 = flash[:notice]
               = t("label.log_in")
       .mb-3
         = render "devise/shared/links"
+      .mb-4.d-flex.justify-content-end
+        = link_to "#{language_link_name}", toggle_path, class: "btn btn-secondary", method: :post

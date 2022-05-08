@@ -1,0 +1,17 @@
+.layer-1{
+  -webkit-box-shadow: 1px 1px 23px 3px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 1px 1px 23px 3px rgba(34, 60, 80, 0.2);
+  box-shadow: 1px 1px 23px 3px rgba(34, 60, 80, 0.2);
+  border-radius: 5px;
+}
+.btn.btn-secondary {
+    color: rgb(255, 255, 255);
+    /*background-color: #838282;*/
+    border-color: #2c7efd;
+    background-image: linear-gradient(180deg, #46aaff, #1443b3);
+  }
+  .btn.btn-secondary:hover {
+    color: #fff;
+    border-color: #ececec;
+    background-image: linear-gradient(180deg, #46aaff, #033ec7);
+  }
