@@ -1,17 +1,10 @@
 require_relative 'lib/user'
+require_relative 'lib/services/user_generator'
 
 RSpec.describe User do
-  let(:user) {
-    User.new(
-      email: 'test@test.ru',
-      first_name: 'Тест',
-      last_name: 'Тестов',
-      middle_name: 'Тестович'
-    )
-  }
-  let(:some_user){
-    User.generate
-  }
+  let(:some_user){ Services::UserGenerator.generate }
+  let(:user) { User.new(some_user) }
+
   context 'содержит методы' do
     it :email do
       expect(user).to respond_to :email
@@ -29,22 +22,21 @@ RSpec.describe User do
 
   context 'корректно возвращает' do
     it :email do
-      expect(user.email).to eq 'test@test.ru'
+      expect(user.email).to eq some_user[:email]
     end
     it :first_name do
-      expect(user.first_name).to eq 'Тест'
+      expect(user.first_name).to eq some_user[:first_name]
     end
     it :last_name do
-      expect(user.last_name).to eq 'Тестов'
+      expect(user.last_name).to eq some_user[:last_name]
     end
     it :middle_name do
-      expect(user.middle_name).to eq 'Тестович'
+      expect(user.middle_name).to eq some_user[:middle_name]
     end
   end
-  context 'успешно генерирует' do
-    it 'пользователя' do
-      puts "USER = #{some_user}"
-      expect(some_user[:email]).to include '@'
+  context 'Созданный пользователь содержит в поле "email"' do
+    it 'электронный адрес' do
+      expect(user.email).to match(/^\S+@\S+\.\S+$/)
     end
   end
 end

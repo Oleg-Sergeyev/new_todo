@@ -1,3 +1,7 @@
+.container-registration{
+  max-width: 480px;
+  min-width: 350px;
+}
 .layer-1{
   -webkit-box-shadow: 1px 1px 23px 3px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 1px 1px 23px 3px rgba(34, 60, 80, 0.2);
@@ -14,4 +18,14 @@
     color: #fff;
     border-color: #ececec;
     background-image: linear-gradient(180deg, #46aaff, #033ec7);
+  }
+  .btn.btn-secondary.btn-localization{
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 5px;
+    background-image: linear-gradient(180deg, #d1d1d1, #363636);
+    border-color: #696969;
+  }
+  .btn.btn-secondary.btn-localization:hover{
+    border-color: #ffffff;
   }
