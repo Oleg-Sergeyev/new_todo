@@ -1,11 +1,49 @@
-h2
-  | Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+.form-group[align="center"]
+  .container-registration
+    .row.justify-content-center
+      .layer-1.mb-4.mt-4.col-8[align="center"]
+        .row
+          .col.mt-3
+            h2 = t("label.forgot_your_password?")
+        .row
+          .col.mb-3
+            p.desription = t("label.send_me_reset_password_instructions")    
+        .row    
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+            .row.gy-1.g-1
+              .col-sm-5.col-md-4
+                span#basic-addon2.input-group-text
+                  = t('label.email')
+              .col-sm-7.col-md-8
+                .input-group.mb-3#div_input_email
+                  = f.email_field :email, autofocus: true, autocomplete: "email", id:"input_email", class:"col-6 form-control", placeholder:"user@example.com"
+            .row      
+              .mb-1.col.d-flex    
+                label.form-label[for="input_email" id="label_wrong_email"] 
+                  = " "
+            .row
+              .col.d-flex.justify-content-end
+                button#submit_log_in.submit.btn.btn-secondary[type="submit"]
+                  = t("label.send")
+        .row.gy-1.g-1
+          .mt-3.col
+            = render "devise/shared/links"
+        .row.gy-1.g-1
+          .mt-3.col
+            = render "devise/shared/error_messages", resource: resource
+        .row.gy-1.g-1    
+          .mb-3.d-flex.justify-content-end
+            = link_to "#{language_link_name}", toggle_path, class: "btn-localization btn btn-secondary", method: :post
+
+/Old html
+/ h2
+/   | Forgot your password?
+/ = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+/   = render "devise/shared/error_messages", resource: resource
+/   .field
+/     = f.label :email
+/     br
+/     = f.email_field :email, autofocus: true, autocomplete: "email"
+/   .actions
+/     = f.submit "Send me reset password instructions"
+/ = render "devise/shared/links"

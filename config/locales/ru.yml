@@ -29,6 +29,11 @@ ru:
     localization:     Локализация
     forgot_your_password?: Забыли пароль?
     didn't_receive_confirmation_instructions?: Не получили инструкций подтверждения?
+    confirmation:     Подтверждение
+    resend_confirmation_instructions: Повторно отправить инструкции по подтверждению регистриации
+    resend:           Повторно отправить
+    send:             Отправить
+    send_me_reset_password_instructions: Вышлите мне инструкцию по сбросу пароля
   messages:
     authorisation_error: ошибка авторизации
     user_has_been_banned: пользователь заблокирован!

@@ -24,6 +24,10 @@ en:
     sign_up:          Sign up
     forgot_your_password?: Forgot your password?
     didn't_receive_confirmation_instructions?: Didn't receive confirmation instructions?
+    resend_confirmation_instructions: Resend confirmation instructions
+    resend:           Resend
+    send:             Send
+    send_me_reset_password_instructions: Send me reset password instructions
   messages:
     questions:
       are_you_sure?:  Are you sure?  
