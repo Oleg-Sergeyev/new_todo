@@ -1,18 +1,48 @@
 - cache current_user, expires_in: 1.hour do
-  .container-home-content.d-flex.flex-column.justify-content-center
-    .about_block
-      .header-about.d-flex.justify-content-center
-        p.header-p ="Marketing and Software Development for the Future!"
-      .d-flex.justify-content-center
-        h.random-text.text-center = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 1).join}"
-      .mt-2.mb-4
-        .rounded_mx-auto_d-block
-          .d-flex.justify-content-center
-            = image_tag "about_image_resize.png", class: :rounded
-    .map_block
-      .header-map.mt-3.d-flex.justify-content-center
-        p = t("label.our_address")
-      .d-flex.justify-content-center
-        h.random-text.text-center = "#{FFaker::AddressRU.province}, #{FFaker::AddressRU.city}, #{FFaker::AddressRU.street_address}, #{FFaker::PhoneNumberRU.international_toll_free_number}"
-      .google-map.d-flex.justify-content-center
-        iframe.place src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8849.487242850257!2d43.99421169283097!3d56.32341418598736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4151d448a741de1d%3A0x5e45928f7a744cda!2z0J_QsNC80Y_RgtC90LjQuiDQnNC40L3QuNC90YMg0Lgg0J_QvtC20LDRgNGB0LrQvtC80YM!5e0!3m2!1sru!2sru!4v1651956368825!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+  .container.d-flex.justify-content-center
+    .container-home-content.flex-column
+      .row.about_block
+        .col
+          .row.justify-content-center
+            .col-lg-6.col-sm-8
+              .row
+                .header-about.d-flex.justify-content-center.col
+                  p.header-p ="Marketing and Software Development for the Future!"
+              .row
+                .d-flex.justify-content-center.col
+                  h.random-text.text-justify = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 2).join}"
+              .row
+                .mt-2.mb-3.col.d-flex.justify-content-center
+                  = image_tag "animated_diagram.gif"
+            .col-lg-6.col-sm-8.d-none.d-lg-block
+              .mt-2.mb-3.col
+                = image_tag "about_image_original.png"
+      .row.map_block
+        .col
+          .row.justify-content-center
+            .col-lg-6.col-sm-8
+              .row
+                .header-map.d-flex.justify-content-center
+                  p = t("label.our_address")
+              .row    
+                .d-flex.justify-content-center.mb-3
+                  h.random-text.text-center = "#{FFaker::AddressRU.province}, #{FFaker::AddressRU.city}, #{FFaker::AddressRU.street_address}, #{FFaker::PhoneNumberRU.international_toll_free_number}"
+              .row
+                .google-map.d-flex.justify-content-center
+                  iframe.place src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8849.487242850257!2d43.99421169283097!3d56.32341418598736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4151d448a741de1d%3A0x5e45928f7a744cda!2z0J_QsNC80Y_RgtC90LjQuiDQnNC40L3QuNC90YMg0Lgg0J_QvtC20LDRgNGB0LrQvtC80YM!5e0!3m2!1sru!2sru!4v1651956368825!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            .col-lg-6.col-sm-8.align-self-start.mt-3.mb-1
+              .row.mb-2.mt-1
+                .header-about.d-flex.justify-content-center.col
+                  p.header-p ="Marketing and Software Development for the Future!"
+              .row.mb-2
+                .d-flex.justify-content-center.col
+                  h.random-text = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 1).join}"
+              .row.mb-2
+                .d-flex.justify-content-center.col
+                  h.random-text = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 3).join}"
+              .row.mb-2
+                .d-flex.justify-content-center.col
+                  h.random-text = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 1).join}"
+              .row
+                .d-flex.justify-content-center.col
+                  h.random-text = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 2).join}"

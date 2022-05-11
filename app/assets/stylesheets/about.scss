@@ -4,11 +4,11 @@ p{
   font-weight: bold;
   font-size: 1.2em;
 }
-img{
-  -webkit-box-shadow: -1px 0px 8px 0px rgba(34, 60, 80, 0.2);
-  -moz-box-shadow: -1px 0px 8px 0px rgba(34, 60, 80, 0.2);
-  box-shadow: -1px 0px 8px 0px rgba(34, 60, 80, 0.2);
-}
+// img{
+//   -webkit-box-shadow: -1px 0px 8px 0px rgba(34, 60, 80, 0.2);
+//   -moz-box-shadow: -1px 0px 8px 0px rgba(34, 60, 80, 0.2);
+//   box-shadow: -1px 0px 8px 0px rgba(34, 60, 80, 0.2);
+// }
 td{
   vertical-align: middle;
 }
@@ -16,7 +16,8 @@ td{
 .random-text {
   color: #434e69;
   font-size: 0.9em;
-  max-width: 500px;
+  margin: 0 10px 0 10px;
+  text-align: justify;
 }
 
 .map_block {
@@ -24,7 +25,7 @@ td{
 }
 
 .google-map{
-  margin: 20px;
+  /*margin: 20px;*/
 }
 
 .place{
@@ -35,4 +36,11 @@ td{
 }
 .header-p{
   text-align: center;
+}
+.container-home-content{
+  max-width: 1280px;
+  min-width: 350px;
+}
+.about_block{
+  background-color: #0d6efd26;
 }
