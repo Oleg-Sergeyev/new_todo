@@ -15,7 +15,7 @@ gem 'cancancan'
 gem 'devise'
 gem 'draper'
 gem 'erb_lint'
-gem 'ffaker'
+#gem 'ffaker'
 gem 'jbuilder', '~> 2.7'
 gem 'kaminari'
 gem 'pg', '~> 1.1'
@@ -38,7 +38,7 @@ gem 'grape-swagger-representable'
 gem 'jquery-rails'
 gem 'rails-i18n', '~> 6.0'
 gem 'webpacker' #'~> 5.0'
-# gem 'letter_opener'
+gem 'letter_opener'
 gem 'dotenv-rails'
 gem 'image_processing'
 gem 'resque'
@@ -63,8 +63,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'ffaker'
   gem 'rspec-rails'
-  gem 'faker'
 end
 
 group :development do

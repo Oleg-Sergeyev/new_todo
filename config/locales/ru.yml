@@ -60,7 +60,14 @@ ru:
       role:    Роль 
       seo:     СЕО
       comment: Коментарий
-      stats:   Статистика  
+      stats:   Статистика
+    errors:
+      messages:
+        blank:                   обязательно для заполнения
+        too_short:               слишком коротко
+        name_required_to_fill:   Название обязательно для заполнения
+        user_cannot_be_missing:  Пользователь не может отсутствовать
+        event_cannot_be_missing: Задание не может отсутствовать
     attributes:
       user:
         id:                    Ид.номер
@@ -84,6 +91,7 @@ ru:
       item:
         id:           Ид.номер
         name:         Название
+        event:        Задание
         done:         выполнено
         finished_at:  завершено
         editing_item: Изменение подзадания
@@ -112,15 +120,8 @@ ru:
         content:    Содержимое сообщения
         created_at: Создан
         updated_at: Обновален
-    errors:
       # format:
       #   "%{attribute} %{message}"
-      messages:
-        blank:                  обязательно для заполнения
-        too_short:              слишком коротко
-        name_required_to_fill:  Название обязательно для заполнения
-        user_cannot_be_missing: Пользователь не может отсутствовать
-
   active_admin:
     email: эл.почта
     role:  роль
