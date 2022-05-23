@@ -34,6 +34,7 @@ ru:
     resend:           Повторно отправить
     send:             Отправить
     send_me_reset_password_instructions: Вышлите мне инструкцию по сбросу пароля
+    we_create_applications_in_the_Ruby_language: Мы создаем приложения на Ruby
   messages:
     authorisation_error: ошибка авторизации
     user_has_been_banned: пользователь заблокирован!
@@ -93,6 +94,7 @@ ru:
         created_at:   создано        
       event:
         id:           Ид.номер
+        user:         Пользователь
         name:         Название
         content:      Описание
         done:         выполнено
@@ -110,11 +112,14 @@ ru:
         content:    Содержимое сообщения
         created_at: Создан
         updated_at: Обновален
-
     errors:
+      # format:
+      #   "%{attribute} %{message}"
       messages:
-        blank:     обязательно для заполнения
-        too_short: слишком коротко
+        blank:                  обязательно для заполнения
+        too_short:              слишком коротко
+        name_required_to_fill:  Название обязательно для заполнения
+        user_cannot_be_missing: Пользователь не может отсутствовать
 
   active_admin:
     email: эл.почта

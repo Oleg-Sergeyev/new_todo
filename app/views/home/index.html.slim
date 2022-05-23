@@ -1,8 +1,46 @@
 
-.main-container.d-flex.flex-column.justify-content-center
-  .container-home-content.d-flex.flex-column.justify-content-center
-    .header-map.mt-3.d-flex.justify-content-center
-      h3 = "Веселые картинки"
-    .mt-3.d-flex.justify-content-center  
-      = render "carousel/form-carousel"
+/ .main-container.d-flex.flex-column.justify-content-center
+/   .container-home-content.d-flex.flex-column.justify-content-center
+/     .header-map.mt-3.d-flex.justify-content-center
+/       h3 = "Веселые картинки"
+/     .mt-3.d-flex.justify-content-center  
+/       = render "carousel/form-carousel"
       /= image_tag 'xa-xa.jpg', class:'img-responsive', alt: 'image'
+- cache current_user, expires_in: 1.hour do
+  .container.d-flex.justify-content-center
+    .container-home-content.flex-column
+      .col
+        .row.head
+          .header-about.d-flex.justify-content-center.col.mb
+            p.header-news =t('label.we_create_applications_in_the_Ruby_language')
+        .row.news_block
+          .col
+            .row.layer-carousel.justify-content-center.mb-3.mt-3
+              .col-lg-1.col-sm-8.align-self-center.d-block.d-sm-none
+                .d-flex.justify-content-center.col
+                  .mt-2.mb-3.col.d-flex.justify-content-center
+                    = image_tag "home/home_single_img_1.jpg", class:"img-fluid"
+              .col-lg-1.col-sm-8.align-self-center.d-none.d-sm-block.d-md-none
+                .d-flex.justify-content-center.col
+                  .mt-2.mb-3.col.d-flex.justify-content-center
+                    = image_tag "home/home_single_img_1.jpg", class:"img-fluid"
+              .col-lg-1.col-sm-8.align-self-center.d-none.d-md-block.d-lg-none
+                .d-flex.justify-content-center.col
+                  .mt-2.mb-3.col.d-flex.justify-content-center
+                    = image_tag "home/home_single_img_1.jpg", class:"img-fluid"
+              .col-lg-11.col-sm-8.align-self-center.d-none.d-lg-block
+                  .d-flex.justify-content-center.col
+                    = render "carousel/form-carousel"
+            .row.justify-content-center
+              .col-lg-3.col-sm-8.align-self-center
+                  .d-flex.justify-content-center.col
+                    h.random-text.text-justify = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 2).join}"
+              .col-lg-4.col-sm-8.align-self-center
+                  .d-flex.justify-content-center.col
+                    h.random-text.text-justify = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 2).join}"
+              .col-lg-4.col-sm-8.align-self-center
+                  .d-flex.justify-content-center.col
+                    h.random-text.text-justify = "#{FFaker::HipsterIpsum.paragraphs(sentence_count = 2).join}"
+      / .row.gy-1.g-1    
+      /     .mb-3.d-flex.justify-content-end
+      /       = link_to "#{language_link_name}", toggle_path, class: "btn-localization btn btn-secondary", method: :post

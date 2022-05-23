@@ -28,6 +28,7 @@ en:
     resend:           Resend
     send:             Send
     send_me_reset_password_instructions: Send me reset password instructions
+    we_create_applications_in_the_Ruby_language: We create applications in the Ruby language
   messages:
     questions:
       are_you_sure?:  Are you sure?  
@@ -87,6 +88,14 @@ en:
         content:    Comment content
         created_at: Created at
         updated_at: Updated at
+    errors:
+      # format:
+      #   "%{attribute} %{message}"
+      messages:
+        blank:                  Required to fill
+        too_short:              Too short
+        name_required_to_fill:  Name required to fill
+        user_cannot_be_missing: User cannot be missing
 
 
       
