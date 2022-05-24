@@ -1,24 +1,16 @@
 require 'rails_helper'
 
-# RSpec.describe Event, type: :model do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end
-
 RSpec.describe Event, type: :model do
-  # let(:event) { FactoryBot.create :event }
-  # it 'is valid' do
-  #   expect(event).to be_valid
-  # end
   context 'в невалидном состоянии' do
     let(:event) { Event.new }
     it 'когда пустое название' do
       expect(event.validate).to be_falsey
-      error_message = I18n.t('activerecord.errors.messages.name_required_to_fill')
+      error_message = 'Название задания обязательно для заполнения'
       expect(event.errors.full_messages).to include error_message
     end
     it 'когда отсутствует владелец' do
       expect(event.validate).to be_falsey
-      error_message = I18n.t('activerecord.errors.messages.user_cannot_be_missing')
+      error_message = 'Пользователь не может отсутствовать'
       expect(event.errors.full_messages).to include error_message
     end
   end

@@ -49,8 +49,8 @@ ru:
     about:   О нас
   activerecord:
     models:
-      user:    Пользователь
-      users:   Пользователи
+      users:    Пользователи
+      user:   Пользователь
       post:    Сообщение
       posts:   Сообщения
       event:   Задание
@@ -61,19 +61,49 @@ ru:
       seo:     СЕО
       comment: Коментарий
       stats:   Статистика
+
+  activerecord:
     errors:
-      messages:
-        blank:                   обязательно для заполнения
-        too_short:               слишком коротко
-        name_required_to_fill:   Название обязательно для заполнения
-        user_cannot_be_missing:  Пользователь не может отсутствовать
-        event_cannot_be_missing: Задание не может отсутствовать
+      models:
+        user:
+          attributes:
+            name:
+              blank: обязательно для заполнения
+              too_short: слишком коротко
+            email:
+              blank: обязательна для заполнения
+        event:
+          attributes:
+            name:
+              blank: обязательно для заполнения
+              too_short: слишком коротко
+            user:
+              required:  не может отсутствовать
+        item:
+          attributes:
+            name:
+              blank: обязательно для заполнения
+              too_short: слишком коротко
+            event:
+              required:  не может отсутствовать
+        role:
+          attributes:
+            name:
+              blank: обязательно для заполнения
+              too_short: слишком коротко
+            event:
+              required:  не может отсутствовать
+        commets:
+          attributes:
+            name:
+              blank:  не может отсутствовать
+
     attributes:
       user:
         id:                    Ид.номер
         password:              Пароль
         password_confirmation: Подтверждение пароля
-        email:                 Email
+        email:                 Эл.почта
         name:                  Имя пользователя
         active:                Статус
         created_at:            Был создан
@@ -90,8 +120,8 @@ ru:
         code: Обозначение роли/псевдоним
       item:
         id:           Ид.номер
-        name:         Название
-        event:        Задание
+        name:         Название подзадания
+        event:        Основное задание
         done:         выполнено
         finished_at:  завершено
         editing_item: Изменение подзадания
@@ -103,7 +133,7 @@ ru:
       event:
         id:           Ид.номер
         user:         Пользователь
-        name:         Название
+        name:         Название задания
         content:      Описание
         done:         выполнено
         finished_at:  Завершено
@@ -116,8 +146,13 @@ ru:
         others:       задания
         updated_at:   Обновалено
         created_at:   Создано
+      attributes:
+        name:
+          blank: обязательно для заполнения
       comment:
-        content:    Содержимое сообщения
+        name:       Название комменатрия
+        user:       Пользователь
+        content:    Содержимое комментария
         created_at: Создан
         updated_at: Обновален
       # format:
