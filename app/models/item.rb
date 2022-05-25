@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   after_destroy :recount_items
 
   validates :name, presence: true
+  validates :name, length: { maximum: 2000, minimum: 5 }
 
   belongs_to :event, touch: true
   has_one :has_user, through: :event, source: :user

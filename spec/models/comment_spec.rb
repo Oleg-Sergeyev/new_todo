@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
@@ -12,10 +14,17 @@ RSpec.describe Comment, type: :model do
       expect(comment.content.size).to be < 2
     end
   end
-  context 'в валидном состоянии' do
+  context 'belongs_to связь' do
     let(:comment) { build(:comment) }
-    it 'удовлетворяет валидациям' do
-      expect(comment.validate).to be true
+    let(:user) { create(:user) }
+    it 'успешно работает' do
+      expect(comment).to respond_to(:user)
+      expect(comment.user).to be_instance_of(User)
     end
   end
+  # Shoulda
+  subject { build(:comment) }
+  it { is_expected.to validate_presence_of(:content) }
+  it { is_expected.to belong_to(:user).counter_cache(true) }
+  it { is_expected.to belong_to(:commentable) }
 end

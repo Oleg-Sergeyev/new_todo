@@ -83,6 +83,7 @@ hash_user =
     events_ffd_count: 0,
     items_unffd_count: 0,
     items_ffd_count: 0,
+    comments_count: 0,
     password: 'admin1@example.com',
     password_confirmation: 'admin1@example.com'
   }

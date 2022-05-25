@@ -8,10 +8,12 @@ class Event < ApplicationRecord
 
   validates :name, presence: true
   validates :name, length: { maximum: 500, minimum: 2 }
+  validates :content, presence: true
+  validates :content, length: { maximum: 2000, minimum: 5 }
 
   belongs_to :user, counter_cache: true
   has_many :items, dependent: :destroy
-  has_many :comments, as: :commentable
+  has_many :comments, dependent: :nullify, as: :commentable
   # has_many :users, through: :commnets
   has_many :comentators, through: :comments, source: :user
   has_many_attached :files #strict_loading: true

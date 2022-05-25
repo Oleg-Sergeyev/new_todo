@@ -22,4 +22,13 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
+  # Shoulda
+  subject { build(:user) }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
+  it { is_expected.to validate_presence_of(:email) }
+  it { is_expected.to belong_to(:role) }
+  it { is_expected.to have_many(:events) }
+  it { is_expected.to have_many(:items).through(:events) }
+  it { is_expected.to have_many(:comments) }
 end

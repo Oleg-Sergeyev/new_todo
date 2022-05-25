@@ -66,6 +66,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'shoulda-matchers'
 end
 
 group :development do

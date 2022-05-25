@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_03_172122) do
+ActiveRecord::Schema.define(version: 2022_05_25_195842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2022_04_03_172122) do
     t.integer "role_id", comment: "Роль пользователя"
     t.integer "events_ffd_count"
     t.integer "events_unffd_count"
-    t.integer "events_count"
+    t.integer "events_count", default: 0, comment: "Счетчик событий пользователя (belongs_to)"
     t.integer "items_count"
     t.integer "items_ffd_count"
     t.integer "items_unffd_count"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 2022_04_03_172122) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "state", comment: "Текущее состояние"
+    t.integer "comments_count", default: 0, comment: "Счетчик комментариев пользователя (belongs_to)"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
