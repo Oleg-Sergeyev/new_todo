@@ -64,7 +64,11 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'ffaker'
-  gem 'rspec-rails'
+  #gem 'rspec-rails', '~> 6.0.0'
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+  end
+  gem 'rexml'
   gem 'simplecov'
   gem 'shoulda-matchers'
 end

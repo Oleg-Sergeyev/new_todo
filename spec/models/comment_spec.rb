@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require_relative '../rails_helper'
 
 RSpec.describe Comment, type: :model do
   context 'в невалидном состоянии' do
