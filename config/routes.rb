@@ -9,24 +9,20 @@ Rails.application.routes.draw do
   mount RootApi => '/'
   mount Resque::Server.new, at: '/resque'
 
-  # resources :events do
-  #   resources :items
-  # end
-
   root 'home#index'
-
+  get 'stats', to: 'stats#index'
+  get 'about', to: 'about#index'
   get 'emails', to: 'emails#index'
 
   post :toggle, to: 'locales#toggle'
+  post :journal, to: 'events#journal'
 
   resources :users
   resources :roles
   resources :items
+  resources :events
 
   resources :events do
     resources :items
   end
-  resources :events
-  get 'stats', to: 'stats#index'
-  get 'about', to: 'about#index'
 end

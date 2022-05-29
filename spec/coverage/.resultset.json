@@ -1,0 +1,131 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/oleg/todo/spec/factories/comments.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/oleg/todo/spec/factories/events.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          22,
+          22,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/oleg/todo/spec/factories/items.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/oleg/todo/spec/factories/roles.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          23,
+          15,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/oleg/todo/spec/factories/users.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          22,
+          22,
+          22,
+          15,
+          22,
+          22,
+          22,
+          22,
+          22,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/oleg/todo/spec/support/factory_bot.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/oleg/todo/spec/support/pundit_matcher.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          21,
+          21,
+          null,
+          null,
+          21,
+          6,
+          null,
+          null,
+          21,
+          0,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1653752396
+  }
+}

@@ -2,20 +2,10 @@
 
 # class EventsController
 class EventsController < ApplicationController
+  include Commentable
+
   before_action :set_event, only: %i[show edit update destroy]
   before_action :authenticate_user!
-
-  def edit
-    authorize @event
-  end
-
-  def update
-    authorize @event
-  end
-
-  def destroy
-    authorize @event
-  end
 
   @rows_count = 5
 
@@ -43,34 +33,38 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
+    authorize @event
+    @comments = @event.comments#&.root&.self_and_descendants&.order(:lft)
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
   end
 
   # GET /events/new
   def new
+    I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
     @event = Event.new
   end
 
   # GET /events/1/edit
   def edit
+    authorize @event
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
+  end
+
+  def journal
+    render_interval_query(event_params[:rows_count], event_params[:start_date], event_params[:final_date])
   end
 
   # POST /events or /events.json
   def create
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
-    if %i[start_date final_date].all? { |s| event_params.key? s }
-      render_interval_query(event_params[:rows_count], event_params[:start_date], event_params[:final_date])
-    else
-      @event = policy_scope(Event).new(event_params.merge(user: User.find(current_user.id)))
-      respond_to do |format|
-        if @event.save
-          format.html { redirect_to event_url(@event), notice: 'Event was successfully created.' }
-          format.json { render :show, status: :created, location: @event }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @event.errors, status: :unprocessable_entity }
-        end
+    @event = policy_scope(Event).new(event_params.merge(user: User.find(current_user.id)))
+    respond_to do |format|
+      if @event.save
+        format.html { redirect_to event_url(@event), notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -112,7 +106,7 @@ class EventsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:name, :user_name, :content, :user, :created_at, :start_date, :final_date,
-                                  :rows_count, :state, files: [])
+                                  :rows_count, :state, :page, files: [])
   end
 
   def render_interval_query(rows_count, start_date, final_date)

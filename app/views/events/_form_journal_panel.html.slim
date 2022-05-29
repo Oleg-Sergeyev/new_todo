@@ -1,5 +1,5 @@
 div id = 'calendar_event' class = 'mb-3' style ='margin: 10px;'
-  = form_for :event do |f|
+  = form_for :event, url: url_for(controller: :events, action: :journal) do |f|
     table.table.table
       thead
         .field

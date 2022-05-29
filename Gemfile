@@ -58,6 +58,7 @@ gem 'redis-rails'
 gem 'roo'
 gem 'httparty'
 gem 'net-smtp', require: false
+gem 'rack-mini-profiler', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -69,8 +70,9 @@ group :development, :test do
     gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
   end
   gem 'rexml'
-  gem 'simplecov'
+  gem 'simplecov', require: false
   gem 'shoulda-matchers'
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -82,7 +84,7 @@ group :development do
   gem 'html2slim'
   gem 'listen', '~> 3.3'
   gem 'lorem_ipsum_amet', '~> 0.6.2'
-  gem 'rack-mini-profiler', '~> 2.0'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
