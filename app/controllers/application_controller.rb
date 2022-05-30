@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  #include Pundit::Authorization
-  include Pundit
+  include Pundit::Authorization
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :dont_allow_admin_update_profile

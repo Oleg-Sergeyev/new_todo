@@ -39,3 +39,4 @@ smtp_srv.env
 log/*
 /storage/*
 !/storage/.keep
+/coverage/*
