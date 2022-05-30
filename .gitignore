@@ -40,3 +40,4 @@ log/*
 /storage/*
 !/storage/.keep
 /coverage/*
+/spec/coverage/*

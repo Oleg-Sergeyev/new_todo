@@ -1,40 +1,40 @@
-- cache @event do
-  div class = 'mb-3' style ='margin-left: 15px;'
-    div class = 'mb-3 event' style ='margin-left: 10px;'
-      p#notice = notice
-      p
-        strong ="#{t('activerecord.attributes.event.name')}: "
-        br
-        =< link_to @event.name, edit_event_path(@event)
-        br
-        br
-        strong ="#{t('activerecord.attributes.event.content')}: "
-        br
-        =< link_to @event.content, edit_event_path(@event)
-      - if @event.files.attached?
-        table
-          th = "N" 
-          th = t('Images') 
-          - @event.files.each_with_index do |file, i|
-            - cache [file, i] do
-              tr 
-                td = i + 1
-                td = link_to file.blob.filename, rails_blob_path(file, only_path: true)
-      p 
-        strong ="#{t('activerecord.attributes.event.done')}: "
-        =< @event.state == 'finished' ? t('activerecord.attributes.event.finished') : t('activerecord.attributes.event.not_finished')
-    div class = 'container' style ='padding: 15px;' 
-      strong = t('activerecord.models.items')
+/- cache @event do
+div class = 'mb-3' style ='margin-left: 15px;'
+  div class = 'mb-3 event' style ='margin-left: 10px;'
+    p#notice = notice
+    p
+      strong ="#{t('activerecord.attributes.event.name')}: "
       br
-      = notice
-      table.table.table-striped.table-items
-        - @event.items.order(created_at: :desc).each_with_index do |item, i|
-          - cache [item, i] do
-            tr
-              td = link_to "#{i + 1}", edit_event_item_path(item, { event_id: @event.id } )
-              td = link_to item.name, edit_event_item_path(item, { event_id: @event.id } )
-    div class = 'mb-3'
-            
-      = link_to t('label.back'), events_path, class: 'btn btn-primary'
+      =< link_to @event.name, edit_event_path(@event)
+      br
+      br
+      strong ="#{t('activerecord.attributes.event.content')}: "
+      br
+      =< link_to @event.content, edit_event_path(@event)
+    - if @event.files.attached?
+      table
+        th = "N" 
+        th = t('Images') 
+        - @event.files.each_with_index do |file, i|
+          - cache [file, i] do
+            tr 
+              td = i + 1
+              td = link_to file.blob.filename, rails_blob_path(file, only_path: true)
+    p 
+      strong ="#{t('activerecord.attributes.event.done')}: "
+      =< @event.state == 'finished' ? t('activerecord.attributes.event.finished') : t('activerecord.attributes.event.not_finished')
+  div class = 'container' style ='padding: 15px;' 
+    strong = t('activerecord.models.items')
+    br
+    = notice
+    table.table.table-striped.table-items
+      - @event.items.order(created_at: :desc).each_with_index do |item, i|
+        - cache [item, i] do
+          tr
+            td = link_to "#{i + 1}", edit_event_item_path(item, { event_id: @event.id } )
+            td = link_to item.name, edit_event_item_path(item, { event_id: @event.id } )
+  div class = 'mb-3'
+          
+    = link_to t('label.back'), events_path, class: 'btn btn-primary'
 
-      =< link_to t('label.new_item'), new_event_item_path(@event.id), class: 'btn btn-primary'
+    =< link_to t('label.new_item'), new_event_item_path(@event.id), class: 'btn btn-primary'

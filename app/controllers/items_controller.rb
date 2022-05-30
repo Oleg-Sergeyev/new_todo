@@ -3,13 +3,16 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy]
   skip_before_action :verify_authenticity_token
+
   # GET /event/items or /event/items.json
   def index
+    
     # @event_items = Item.where(event_id: Event.include(:items).pluck(:id))
-    @event = Event.find(params[:event_id])
+    @event = session[:event_id] ?  Event.find(session[:event_id]) : Event.find(params[:event_id])
+    @item = session[:id] ? Item.find(session[:id]) : Item.find(params[:id])
+  
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
     # @items = Item.where("event_id = #{params[:event_id]}")
-    @item = Item.find(params[:id])
   end
 
   # GET /event/items/1 or /event/items/1.json
@@ -19,7 +22,8 @@ class ItemsController < ApplicationController
 
   # GET /event/items/new
   def new
-    @item = Item.new(event_id: params[:event_id])
+    session[:event_id] = params[:event_id]
+    @item = Item.new(event_id: session[:event_id])
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
   end
 
@@ -31,14 +35,17 @@ class ItemsController < ApplicationController
 
   # POST /event/items or /event/items.json
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(item_params.merge(event_id: session[:event_id]))
     I18n.locale = session.fetch(:locale, I18n.default_locale).to_sym
+    # binding.pry
     respond_to do |format|
       if @item.save
         format.html { redirect_to event_path(@item.event_id), notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
+        session[:event_id] = nil
       else
-        format.html { render :new, status: :unprocessable_entity }
+        #binding.pry
+        format.html { render :new, event_id: session[:event_id] }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
@@ -65,6 +72,8 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to event_path(@item.event_id), notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
+      session[:event_id] = nil
+      session[:id] = nil
     end
   end
 
@@ -73,6 +82,7 @@ class ItemsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_item
     @item = Item.find(params[:id])
+    session[:id] = params[:id]
   end
 
   # Only allow a list of trusted parameters through.

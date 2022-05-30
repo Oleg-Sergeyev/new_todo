@@ -4,9 +4,11 @@ div class = 'mb-3' style ='margin-left: 15px;'
     = "#{t('label.main_event')}: #{Event.find(@item.event_id).name}"
 div id = 'table_items' class = 'mb-3' style ='margin: 10px;'
   /= link_to @event.name, :back
+  br
+  = render 'error_messages', resource: @item
   = form_for(@item) do |f|
-    = f.hidden_field :event_id
-    table.table.table-striped class ='table table-striped' style ='margin: 5px;'
+    /= f.hidden_field :event_id
+    table.table.table-striped style ='margin: 5px;'
       thead
         tr
           th =t('№')

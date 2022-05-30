@@ -23,9 +23,8 @@ RSpec.describe ItemsController, type: :controller do
   end
   describe 'POST' do
     it 'подзадание успешно создано' do
-      post :create, params: { item: attributes_for(:item) }
-      #expect(response).to have_http_status(:redirect)
-      expect(response).to have_http_status(422)
+      post :create, params: { event_id: item.event_id, item: attributes_for(:item) }
+      expect(response).to have_http_status(:success)
     end
     it 'подзадание не создано' do
       post :create, params: { item: attributes_for(:item_wrong) }
