@@ -1,6 +1,6 @@
 div id = 'table_items' class = 'mb-3' style ='margin: 10px;'
   /= link_to @event.name, :back
-  = form_for(@item) do |f|
+  = form_for @item do |f|
     table.table.table-striped class ='table table-striped' style ='margin: 5px;'
       thead
         tr
@@ -20,4 +20,4 @@ div id = 'table_items' class = 'mb-3' style ='margin: 10px;'
               = f.submit t('label.update'), data: { confirm: t('messages.questions.are_you_sure?') }, class: 'btn btn-dark', style: 'margin: 5px'
               = link_to t('label.destroy'), @item, data: { confirm: t('messages.questions.are_you_sure?') }, method: :delete, class: 'btn btn-dark', style: 'margin: 5px'
   div class = 'mb-3' style ='margin-left: 15px;'
-    = link_to 'Back',  event_path(@item.event_id), class: 'btn btn-primary'
+    = link_to 'Back', event_path(@item.event_id), class: 'btn btn-primary'

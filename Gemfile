@@ -22,6 +22,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'pundit'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.3'
+#gem 'rails', '~> 7.0.0'
 gem 'sass-rails', '>= 6'
 # gem 'jquery-turbolinks'
 gem 'bootstrap' # , '~> 5.0.2'
@@ -59,6 +60,7 @@ gem 'net-smtp', require: false
 gem 'rack-mini-profiler', '~> 2.0'
 gem 'redis-rails'
 gem 'roo'
+gem 'sprockets-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

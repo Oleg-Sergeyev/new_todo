@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   post :toggle, to: 'locales#toggle'
   post :journal, to: 'events#journal'
+  post '/events/:event_id/items/new(.:format)' => 'items#create', as: :create_item
 
   resources :users
   resources :roles

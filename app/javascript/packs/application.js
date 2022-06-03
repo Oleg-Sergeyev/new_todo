@@ -63,15 +63,15 @@ window.onload = function() {
 //
 function new_user(){
 const element = document.getElementById("new-user");
-element.addEventListener("ajax:success", function (data){
-  query()
-});
+  element.addEventListener("ajax:success", function (data){
+    query()
+  });
 };
 
 function edit_user(){
   const element = document.getElementById("edit-user");
   element.addEventListener("ajax:success", function (data){
-    query_edit()
+   query_edit()
   });
 };
 //
