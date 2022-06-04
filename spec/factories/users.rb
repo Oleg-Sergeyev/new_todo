@@ -24,5 +24,17 @@ FactoryBot.define do
       items_ffd_count { 0 }
       comments_count { 0 }
     end
+    factory :user_admin do
+      pass = 'admin@example.com'
+      name { 'admin@example.com' }
+      email { 'admin@example.com' }
+      password { pass }
+      role { create(:role_admin) }
+      events_unffd_count { 0 }
+      events_ffd_count { 0 }
+      items_unffd_count { 0 }
+      items_ffd_count { 0 }
+      comments_count { 0 }
+    end
   end
 end

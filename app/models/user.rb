@@ -20,7 +20,7 @@ class User < ApplicationRecord
   validates :name, length: { maximum: 50, minimum: 2 }
   validates :name, uniqueness: true
 
-  belongs_to :role, inverse_of: :users
+  belongs_to :role, inverse_of: :users, required: true
   has_many :comments, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :items, through: :events
@@ -72,20 +72,22 @@ class User < ApplicationRecord
 
   act_as_rolable
 
+  def admin?
+    role&.code == 'admin'
+  end
+
   before_save :ensure_authentication_token
 
   def ensure_authentication_token
     self.authentication_token ||= generate_authentication_token
   end
 
-  private
-
   def generate_authentication_token
     loop do
       token = Devise.friendly_token
       break token unless User.where(authentication_token: token).first
     end
-  end 
+  end
 
   def attributes
     { name: name, email: email }
@@ -98,14 +100,6 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && active?
   end
-
-  # def admin?
-  #   Role.where(code: 'admin')&.ids.include? role_id
-  # end
-
-  # def default?
-  #   Role.where(code: 'default')&.ids.include? role_id
-  # end
 
   private
 

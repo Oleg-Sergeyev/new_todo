@@ -4,7 +4,7 @@ ActiveAdmin.register Event do
   menu priority: 3, label: I18n.t('active_admin.label.main_events').capitalize
   show title: proc { |event| event.name.truncate(50) }
   permit_params %i[id user_id name content done finished_at event_id state]
-  actions :index, :show, :update, :edit, :new, :destroy
+  actions :index, :show, :update, :edit, :new, :destroy, :create
   before_action :event_state, only: :update
 
   action_item :new_item, only: :show do
@@ -80,6 +80,12 @@ ActiveAdmin.register Event do
   end
 
   controller do
+    def create
+      create! do |format|
+        format.html { redirect_to "/admin/events/#{resource.id}" } if resource.valid?
+      end
+    end
+
     def event_state
       case params[:event][:state]
       when 'created'
