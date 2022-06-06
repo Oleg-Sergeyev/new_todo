@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   mount RootApi => '/'
+
   mount Resque::Server.new, at: '/resque'
 
   root 'home#index'

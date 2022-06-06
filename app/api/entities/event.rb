@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 module Entities
-  # class EventIndex
-  class EventIndex < Grape::Entity
+  # class Event
+  class Event < Grape::Entity
     include ActionView::Helpers::TextHelper
     root 'events', 'event'
 
-    expose :user, :id, :name, :content, :finished_at
+    expose :id, :name, :content, :state, :finished_at
+
+    expose :user, using: 'Entities::User' do |event, _|
+      event.user
+    end
 
     def name
       truncate(object.name)

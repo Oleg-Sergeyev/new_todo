@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
+require_relative 'helpers/events_helper'
+require_relative 'helpers/params_helper'
+
+# class RootApi < Grape::API
 class RootApi < Grape::API
-  # helpers FiltersHelper, ParamsHelper
- 
   format :json
   prefix :api
+
+  mount Events
 
   before do
     error!('401 Unauthorized', 401) unless authenticated
@@ -17,6 +21,7 @@ class RootApi < Grape::API
 
     def authenticated
       return true if warden.authenticated?
+
       params[:access_token] && @user = User.find_by_authentication_token(params[:access_token])
     end
 
@@ -25,7 +30,6 @@ class RootApi < Grape::API
     end
   end
 
-  mount Events
   # api/swagger_doc
   add_swagger_documentation
 end

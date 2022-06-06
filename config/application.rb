@@ -52,6 +52,9 @@ module Todo
     config.paths.add Rails.root.join('app/lib').to_s, eager_load: true
     config.eager_load_paths << "#{Rails.root}/public/images/upload/**"
     config.eager_load_paths << "#{Rails.root}/app/api/entities/**"
+    config.eager_load_paths << "#{Rails.root}/app/api/helpers/"
+    #Dir["#{File.dirname(__FILE__)}/app/helpers/**/*.rb"].each { |f| require f }
+    config.paths.add Rails.root.join('app/api/helpers').to_s, eager_load: true
     # config.assets.paths << Rails.root.join("app", "api", "helpers")
     config.eager_load_paths << Rails.root.join('lib/classes')
     config.eager_load_paths << Rails.root.join('/services')
