@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative 'helpers/events_helper'
+require_relative 'helpers/params_helper'
+
 # class Events < Grape::API
 class Events < Grape::API
   helpers EventsHelper, ParamsHelper

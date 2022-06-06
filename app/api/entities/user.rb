@@ -6,7 +6,7 @@ module Entities
     include ActionView::Helpers::TextHelper
     root 'users', 'user'
 
-    expose :id, :name, :role
+    expose :id, :name, :role, :state
 
     def role
       object.role.code

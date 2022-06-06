@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/events_helper'
-require_relative 'helpers/params_helper'
-
 # class RootApi < Grape::API
 class RootApi < Grape::API
   format :json
   prefix :api
 
   mount Events
+  mount Users
 
   before do
     error!('401 Unauthorized', 401) unless authenticated

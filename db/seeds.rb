@@ -14,10 +14,10 @@ hash_users = 10.times.map do
   email = FFaker::Internet.safe_email
   {
     name: email,
-    email: email,
+    email:,
     password: email,
     role: default_role,
-    #active: [true, false].sample,
+    # active: [true, false].sample,
     events_unffd_count: 0,
     events_ffd_count: 0,
     items_unffd_count: 0,
@@ -32,7 +32,7 @@ hash_events = 40.times.map do
     name: FFaker::HipsterIpsum.phrase,
     content: FFaker::HipsterIpsum.paragraphs.join,
     user: users.sample
-    #done: [true, false].sample
+    # done: [true, false].sample
   }
 end
 
@@ -78,7 +78,7 @@ hash_user =
     name: 'admin1@example.com',
     email: 'admin1@example.com',
     role: admin_role,
-    #active: true,
+    # active: true,
     events_unffd_count: 0,
     events_ffd_count: 0,
     items_unffd_count: 0,
@@ -93,4 +93,4 @@ User.create! hash_user
 Event.find_each do |date|
   date.update(created_at: DateTime.now - rand(0..5).day)
 end
-#User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+# User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
