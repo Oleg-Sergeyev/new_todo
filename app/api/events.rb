@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/events_helper'
+require_relative 'helpers/event_filters_helper'
 require_relative 'helpers/params_helper'
 
 # class Events < Grape::API
 class Events < Grape::API
-  helpers EventsHelper, ParamsHelper
+  helpers EventFiltersHelper, ParamsHelper
   include Grape::Kaminari
 
   resource :events do
@@ -27,6 +27,29 @@ class Events < Grape::API
       end
       post '/' do
         @event.destroy
+      end
+    end
+    resource :created do
+      route_param :order, type: String do
+        before do
+          @event = Event.order(created_at: params[:order])
+        end
+        get '/' do
+          present @event, with: Entities::Event
+        end
+      end
+    end
+    resource :updated do
+      params do
+        use :pagination, per_page: 4, max_per_page: 4, offset: 0
+      end
+      route_param :order, type: String do
+        before do
+          @event = Event.order(updated_at: params[:order])
+        end
+        get '/' do
+          present paginate(@event), with: Entities::Event
+        end
       end
     end
   end

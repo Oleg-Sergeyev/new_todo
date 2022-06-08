@@ -22,4 +22,12 @@ class EventPolicy < ApplicationPolicy
   def destroy?
     record.user_id == user&.id || user&.admin?
   end
+
+  def new?
+    record.user_id == user&.id || user&.admin?
+  end
+
+  def create?
+    record.user_id == user&.id || user&.admin?
+  end
 end

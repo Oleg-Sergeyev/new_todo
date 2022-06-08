@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# module EventsHelper
-module UsersHelper
+# module UserFiltersHelper
+module UserFiltersHelper
   extend Grape::API::Helpers
 
   def users_scope(all = nil)

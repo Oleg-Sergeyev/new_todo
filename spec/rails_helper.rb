@@ -7,9 +7,9 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
+#Dir[Rails.root.join('spec/api/**/*.rb')].sort.each { |f| require f }
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -33,6 +33,32 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+FactoryBot.define do
+  # factory :user do
+  #   sequence(:name) { |n| FFaker::Internet.user_name[0...10] + n.to_s }
+  #   sequence(:email) { |n| "person#{n}@example.com" }
+  #   active { true }
+  #   role { create(:role) }
+  #   password { '12345678' }
+  #   password_confirmation { '12345678' }
+  #   after(:create) do |user|
+  #     def user.admin?
+  #       false
+  #     end
+  #   end
+  # end
+  after(:create) do |user|
+    def user.admin?
+      false
+    end
+  end
+  factory :user_with_avatar, parent: :user do
+    after(:create) do |user|
+      file = File.open(Rails.root.join('spec/fixtures/ruby.png'))
+      user.avatar.attach(io: file, filename: 'ruby.png', content_type: 'image/png')
+    end
+  end
+end
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Shoulda::Matchers::ActiveModel, type: :model
@@ -41,7 +67,10 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::ControllerHelpers, type: :helper
-  #config.include ApiHelper, type: :api
+  %i[controller view helper].each do |subsystem|
+    config.include Devise::Test::ControllerHelpers, type: subsystem
+  end
+  config.include ApiHelper, type: :api
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

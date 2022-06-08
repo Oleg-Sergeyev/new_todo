@@ -6,7 +6,7 @@ module Entities
     include ActionView::Helpers::TextHelper
     root 'events', 'event'
 
-    expose :id, :name, :content, :state, :finished_at
+    expose :id, :name, :content, :state, :created_at, :updated_at, :finished_at
 
     expose :user, using: 'Entities::User' do |event, _|
       event.user

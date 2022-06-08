@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/users_helper'
+require_relative 'helpers/user_filters_helper'
 
 # class Events < Grape::API
 class Users < Grape::API
-  helpers UsersHelper
+  helpers UserFiltersHelper
   include Grape::Kaminari
 
   resource :users do
