@@ -12,10 +12,10 @@ class Events < Grape::API
     desc 'Список дел'
     params do
       use :filters
-      use :pagination, per_page: 4, max_per_page: 4, offset: 0
+      use :pagination, per_page: 2, max_per_page: 4, offset: 0
     end
     get '/' do
-      present events_scope(params[:all]), with: Entities::EventIndex
+      present paginate(events_scope(params[:all])), with: Entities::EventIndex
     end
 
     route_param :event_id, type: Integer do
@@ -30,22 +30,25 @@ class Events < Grape::API
       end
     end
     resource :created do
+      params do
+        use :pagination, per_page: 2, max_per_page: 4, offset: 0
+      end
       route_param :order, type: String do
         before do
-          @event = Event.order(created_at: params[:order])
+          @event = events_scope(params[:all], :created_at, params[:order])
         end
         get '/' do
-          present @event, with: Entities::Event
+          present paginate(@event), with: Entities::Event
         end
       end
     end
     resource :updated do
       params do
-        use :pagination, per_page: 4, max_per_page: 4, offset: 0
+        use :pagination, per_page: 2, max_per_page: 4, offset: 0
       end
       route_param :order, type: String do
         before do
-          @event = Event.order(updated_at: params[:order])
+          @event = events_scope(params[:all], :created_at, params[:order])
         end
         get '/' do
           present paginate(@event), with: Entities::Event
