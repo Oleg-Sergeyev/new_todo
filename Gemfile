@@ -75,6 +75,8 @@ group :development, :test do
   gem 'rexml'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do

@@ -13,13 +13,18 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-
+require 'capybara/rspec'
 require 'simplecov'
 SimpleCov.start 'rails' do
   add_filter '/config/'
   add_filter '/spec/'
   add_filter 'app/spec/api/'
 end
+
+Capybara.register_driver :selenium_chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+Capybara.javascript_driver = :selenium_chrome
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

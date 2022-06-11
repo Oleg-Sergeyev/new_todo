@@ -26,8 +26,8 @@ FactoryBot.define do
     end
     factory :user_admin do
       pass = 'admin@example.com'
-      name { 'admin@example.com' }
-      email { 'admin@example.com' }
+      name { "admin@example#{rand(0..1000)}.com" }
+      email { "admin@example#{rand(0..1000)}.com" }
       password { pass }
       role { create(:role_admin) }
       events_unffd_count { 0 }
