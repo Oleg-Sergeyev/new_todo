@@ -21,7 +21,7 @@ active_admin_form_for [:admin, resource] do |f|
   f.actions do
     f.action :submit, label: t('active_admin.label.change').capitalize, as: :button
     if resource.id
-      f.cancel_link admin_user_path(resource.id), label: t('cancel'), as: :button 
+      f.cancel_link admin_user_path(resource.id), label: t('cancel'), as: :button
     else
       f.cancel_link admin_users_path, label: t('cancel'), as: :button
     end

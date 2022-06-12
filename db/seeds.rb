@@ -37,6 +37,7 @@ hash_events = 40.times.map do
 end
 
 events = Event.create! hash_events
+
 hash_items = 200.times.map do
   {
     name: FFaker::HipsterIpsum.paragraph,
@@ -57,6 +58,24 @@ hash_comments = 200.times.map do
 end
 
 comments = Comment.create! hash_comments
+
+# def create_comment(users, event, parent = nil)
+#   comment = parent ? parent.children : Comment
+#   comment.create!(
+#     content: FFaker::Lorem.paragraph,
+#     user: users.sample,
+#     commentable_id: event.id,
+#     commentable_type: event.class.to_s
+#   )
+# end
+
+# events.each do |event|
+#   root = create_comment(users, event)
+#   create_comment(users, event, root)
+#   first = create_comment(users, event, root)
+#   create_comment(users, event, first)
+#   create_comment(users, event, root)
+# end
 
 hash_seos = 200.times.map do
   promoted = (rand(2) == 1 ? comments : users).sample

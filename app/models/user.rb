@@ -22,9 +22,8 @@ class User < ApplicationRecord
 
   belongs_to :role, inverse_of: :users, required: true
   has_many :comments, dependent: :destroy
-  has_many :events, dependent: :destroy
-  has_many :items, through: :events
-  has_many :has_items, through: :events, source: :items
+  has_many :events, dependent: :delete_all
+  has_many :items, through: :events#, dependent: :delete_all
 
   has_many :commented_events,
            through: :comments,
@@ -119,6 +118,9 @@ class User < ApplicationRecord
     Rails.logger.info '#######################################'
     Rails.logger.info "Собираемся удалить пользователя #{name}"
     Rails.logger.info '#######################################'
+    Event.where(user_id: :id).each do |event|
+      Item.delete(event_id: event.id)
+    end
   end
 
   def log_after_destroy

@@ -13,6 +13,7 @@ class Event < ApplicationRecord
 
   belongs_to :user, counter_cache: true
   has_many :items, dependent: :destroy
+  #has_many :comments, as: :commentable, dependent: :delete_all #:nullify
   has_many :comments, as: :commentable, dependent: :nullify
   # has_many :users, through: :commnets
   has_many :comentators, through: :comments, source: :user

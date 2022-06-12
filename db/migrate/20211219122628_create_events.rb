@@ -8,7 +8,7 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.boolean :done, default: false,
                        comment: 'Статус: завершено (true), или нет (false)'
       t.datetime :finished_at, comment: 'Дата и время завершения дела'
-      t.references :user, foreign_key: true,
+      t.references :user, foreign_key: true, on_delete: :cascade,
                           comment: 'Внешний ключ для связи с таблицей users'
 
       t.timestamps

@@ -36,5 +36,8 @@ FactoryBot.define do
       items_ffd_count { 0 }
       comments_count { 0 }
     end
+    factory :admin_user, parent: :user do
+      role { build(:role, name: :admin, code: :admin) }
+    end
   end
 end

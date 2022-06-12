@@ -5,6 +5,7 @@ ActiveAdmin.register User do
   permit_params %i[email name active role_id password password_confirmation state]
   config.sort_order = 'name_asc'
   before_action :user_state, only: :update
+  actions :index, :show, :new, :create, :update, :edit, :destroy
 
   index do
     # selectable_column
@@ -22,6 +23,14 @@ ActiveAdmin.register User do
     column I18n.t('active_admin.email').capitalize, &:email
     column I18n.t('active_admin.state').capitalize, &:state
     column I18n.t('active_admin.role').capitalize, &:role
+    column :actions do |user|
+      links = []
+      links << link_to('Delete', admin_user_path(user.id),
+                       data: { action: :destroy,
+                               method: :delete,
+                               confirm: 'Are you sure?' }, class: 'delete_link')
+      links.join(' ').html_safe
+    end
   end
 
   filter :email

@@ -6,8 +6,10 @@ class Comment < ApplicationRecord
   validates :content, presence: true
   validates :content, length: { maximum: 1000, minimum: 2 }
 
-  belongs_to :user, counter_cache: true
+  belongs_to :user, counter_cache: true#, optional: true
   belongs_to :commentable, polymorphic: true
+
+  #acts_as_nested_set
 
   #has_one :seos, as: :promoted
 

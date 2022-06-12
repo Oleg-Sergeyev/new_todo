@@ -4,13 +4,21 @@ ActiveAdmin.register Event do
   menu priority: 3, label: I18n.t('active_admin.label.main_events').capitalize
   show title: proc { |event| event.name.truncate(50) }
   permit_params %i[id user_id name content done finished_at event_id state]
-  actions :index, :show, :update, :edit, :new, :destroy, :create
+  actions :index, :show, :update, :edit, :new, :create, :destroy
+  config.action_items.delete_at(2)
   before_action :event_state, only: :update
 
   action_item :new_item, only: :show do
     link_to(I18n.t('active_admin.resources.item.new_model'),
             new_admin_event_item_path(resource.id),
             data: { action: :create, method: :get })
+  end
+
+  action_item :destroy, only: :show do
+    link_to t('active_admin.resources.event.delete_model'),
+            admin_event_path, data: { action: :destroy,
+                                      method: :delete,
+                                      confirm: 'Are you sure?' }, class: 'delete_link'
   end
 
   index do
@@ -72,7 +80,9 @@ ActiveAdmin.register Event do
           links << link_to('Show', "/admin/events/#{resource.id}/items/#{item.id}")
           links << link_to('Edit', "/admin/events/#{resource.id}/items/#{item.id}/edit")
           links << link_to('Delete', "/admin/events/#{resource.id}/items/#{item.id}",
-                           data: { action: :destroy, method: :delete, confirm: 'Are you sure?' })
+                           data: { action: :destroy,
+                                   method: :delete,
+                                   confirm: 'Are you sure?' }, class: 'delete_link')
           links.join(' ').html_safe
         end
       end
@@ -84,6 +94,11 @@ ActiveAdmin.register Event do
       create! do |format|
         format.html { redirect_to "/admin/events/#{resource.id}" } if resource.valid?
       end
+    end
+
+    def destroy
+      resource.delete
+      redirect_to admin_events_path
     end
 
     def event_state

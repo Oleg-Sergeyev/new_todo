@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users#, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  delete '/admin/events/:id(.:format)' => 'events#destroy', as: :destroy_event
 
   mount RootApi => '/'
 

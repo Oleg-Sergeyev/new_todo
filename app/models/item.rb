@@ -7,7 +7,8 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 2000, minimum: 5 }
 
-  belongs_to :event, touch: true
+  belongs_to :event, touch: true, dependent: :destroy
+  #has_one :has_user, through: :event#, source: :user, dependent: :destroy
   has_one :has_user, through: :event, source: :user
 
   private
