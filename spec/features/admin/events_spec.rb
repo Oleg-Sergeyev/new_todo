@@ -8,18 +8,15 @@ RSpec.describe Admin::EventsController, driver: :selenium_chrome, js: true do
     fill_in 'user_password', with: user_admin.password
     click_button 'submit_log_in'
   end
-  # context 'страница новго задания' do
-  #   it 'успешный переход' do
-  #     visit new_admin_event_path
-  #     expect(page).to have_content('Создать задание')
-  #     binding.pry
-  #   end
-  #   # it 'успешно отражает нового пользователя' do
-  #   #   create(:user, name: 'test.user')
-  #   #   visit admin_users_path
-  #   #   expect(page).to have_content('test.user')
-  #   # end
-  # end
+  context 'страница всех заданий' do
+    it 'успешный переход' do
+      @event = create(:event, user: create(:user))
+      visit admin_events_path
+      expect(page).to have_content('Events')
+      expect(page).to have_content(@event.user.name)
+      expect(page).to have_content(@event.name)
+    end
+  end
   context 'создание задания' do
     let(:user) { create(:user) }
     let(:event_attr) { attributes_for(:event, user: user) }
@@ -51,10 +48,13 @@ RSpec.describe Admin::EventsController, driver: :selenium_chrome, js: true do
     let(:user) { create(:user) }
     let(:event) { create(:event, user: user) }
     it 'успешно отрабатывает' do
+      option = 'running'
       event
       visit edit_admin_event_path(event.id)
       fill_in 'event_name', with: 'New task'
       fill_in 'event_content', with: 'NEW CONTENT!'
+      find('#event_state').find(
+        'option', text: /#{option}/i).select_option
       click_button 'button'
       expect(page).to have_content('New task')
       expect(page).to have_current_path admin_event_path(event.id), ignore_query: true

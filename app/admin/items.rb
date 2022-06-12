@@ -6,8 +6,15 @@ ActiveAdmin.register Item do
   belongs_to :event, optional: true
   actions :index, :show, :update, :edit, :destroy, :new, :create
   permit_params %i[id event user event_id name content done finished_at]
-
+  config.action_items.delete_at(2)
   config.sort_order = 'name_asc'
+
+  action_item :destroy, only: :show do
+    link_to t('active_admin.resources.item.delete_model'),
+            admin_event_item_path, data: { action: :destroy,
+                                           method: :delete,
+                                           confirm: 'Are you sure?' }, class: 'delete_link'
+  end
 
   controller do
     def create
@@ -17,9 +24,11 @@ ActiveAdmin.register Item do
     end
 
     def destroy
-      destroy! do |format|
-        format.html { redirect_to "/admin/events/#{resource.event_id}" } if resource.valid?
-      end
+      # destroy! do |format|
+      #   format.html { redirect_to "/admin/events/#{resource.event_id}" } if resource.valid?
+      # end
+      resource.delete
+      redirect_to admin_event_path(resource.event_id)
     end
   end
 
