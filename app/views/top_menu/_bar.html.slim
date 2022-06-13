@@ -44,7 +44,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
           li
             = link_to t('label.registration'), new_user_registration_path, class: "nav-link"
           li 
-            = link_to "#{t('label.localization')} [ #{language_link_name} ]", toggle_path, class: "nav-link", method: :post 
+            = link_to "#{t('label.localization')} [ #{language_link_name} ]", toggle_path, class: "nav-link", id: "localization_link", method: :post 
         
         
         

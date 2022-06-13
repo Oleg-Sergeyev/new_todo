@@ -2,11 +2,13 @@
 
 RSpec.describe LocalesController, type: :controller do
   describe 'POST' do
+    before do
+      session[:locale] = :en
+    end
     it 'returns http success' do
       post :toggle
       expect(response).to have_http_status(:redirect)
-      # get :toggle, params: { event: attributes_for(:event_wrong) }
-      # expect(response).to have_http_status(:success)
+      expect(I18n.locale).to eq(:ru)
     end
   end
 end
