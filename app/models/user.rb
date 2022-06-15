@@ -97,7 +97,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super
+    super && valid_for_authentication?
   end
 
   private
