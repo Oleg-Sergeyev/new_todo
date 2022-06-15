@@ -5,6 +5,9 @@
         .row
           .col.mb-3.mt-3
             h2 = t("label.log_in")
+          - flash.each do |_type, msg|
+            .alert.alert-info
+              = msg
         .row    
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .row.gy-1.g-1
