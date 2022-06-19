@@ -13,6 +13,7 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+#require "pundit/rspec"
 require 'capybara/rspec'
 require 'simplecov'
 SimpleCov.start 'rails' do
@@ -27,6 +28,9 @@ end
 Capybara.javascript_driver = :selenium_chrome
 
 RSpec.configure do |config|
+  config.before(:each, js: true) do
+    Capybara.page.driver.browser.manage.window.maximize
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

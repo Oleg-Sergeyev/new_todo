@@ -9,21 +9,23 @@ ActiveAdmin.register_page 'Импорт/экспорт пользователе�
   end
 
   page_action :upload, method: :post do
-    Services::UsersImport.call(params['uploads_form']['excel'].tempfile)
+    return unless params['uploads_form']
+
+    Services::UsersUpdateImportDelete.call(params['uploads_form']['excel'].tempfile)
     flash[:notice] = 'Пользователи были успешно обновлены'
     redirect_to action: :index
   end
 
   content title: 'Импорт/экспорт пользователей' do
     panel 'Экспорт' do
-      semantic_form_for 'downloads_form', url: { action: :download } do |f|
-        f.button 'Скачать'
+      form_for 'downloads_form', url: { action: :download } do |f|
+        f.button 'Скачать', id: 'download_users'
       end
     end
     panel 'Импорт' do
       form_for 'uploads_form', url: { action: :upload }, html: { multipart: true } do |f|
         f.file_field :excel, as: :file
-        f.button 'Загрузить'
+        f.button 'Загрузить', id: 'upload_users'
       end
     end
   end

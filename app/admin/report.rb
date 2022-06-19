@@ -32,9 +32,9 @@ ActiveAdmin.register_page 'Отчет' do
               type: 'application/octet-stream',
               filename: 'user.xlsx'
   end
-  content title: I18n.t('activerecord.models.users').capitalize do
+  content title: I18n.t('label.otchets').capitalize do
     panel I18n.t('home_tasks.task_5').capitalize do
-      button_to(t('label.download_book'), admin_excel_just_excel_path, method: 'post')
+      button_to(t('label.download_book'), admin_excel_just_excel_path, method: 'post', id: 'download_book')
     end
     render partial: 'form'
   end

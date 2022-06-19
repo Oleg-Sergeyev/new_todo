@@ -22,7 +22,7 @@ module Services
       puts "Found #{worksheets.count} worksheets"
       roles = Role.all.map { |role| [role.code, role.id] }.to_h
       user_ids = User.ids
-      user_imails = User.all.map(&:email)
+      user_emails = User.all.map(&:email)
 
       worksheets.each do |worksheet|
         puts "Reading: #{worksheet}"
@@ -31,17 +31,16 @@ module Services
 
           id, name, email, code, action = parse_row(row)
           puts "Reading: #{id}, #{name}, #{email}, #{code}, #{action}"
-          if id.zero? || !user_ids.include?(id)
-            create(name, email, roles[code]) unless user_imails.include?(email)
-            next
-          end
           if action && action == 'delete'
-            delete(email)
+            delete_user(email)
             next
           end
-          update(name, email, roles[code])
+          if user_emails.include?(email) || user_ids.include?(id.to_i)
+            update(name, email, roles[code])
+          else
+            create(name, email, roles[code])
+          end
         end
-        puts "Read #{num_rows} rows"
       end
     end
 
@@ -54,7 +53,7 @@ module Services
           email: email,
           password: email,
           role_id: role,
-          active: [true, false].sample,
+          state: 'created',
           events_unffd_count: 0,
           events_ffd_count: 0,
           items_unffd_count: 0,
@@ -64,11 +63,12 @@ module Services
     end
 
     def update(name, email, role)
-      User.find_by(email: email).update(name: name, email: email, role_id: role)
+      User.find_by(email: email).update(name: name, email: email, role_id: role, state: 'active')
     end
 
-    def delete(email)
-      User.find_by(email: email.to_s).destroy
+    def delete_user(email)
+      user = User.find_by(email: email.to_s)
+      user&.destroy
     end
 
     def parse_row(row)

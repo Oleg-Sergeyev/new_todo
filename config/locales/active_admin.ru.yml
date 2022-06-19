@@ -8,6 +8,7 @@ ru:
     items: подпункты
     state: статус
     role: роль
+    roles: роли
     content: содержимое
     pending: приостановлено
     info:
@@ -44,6 +45,8 @@ ru:
         new_model: Создать пользователя
         edit_model: Редактировать пользователя
         delete_model: Удалить пользователя
+      role:
+        new_model: Создать роль
       event:
         new_model: Создать задание
         edit_model: Редактировать задание

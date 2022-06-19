@@ -8,6 +8,10 @@ active_admin_form_for [:admin, resource] do |f|
   end
   f.actions do
     f.action :submit, label: t('active_admin.label.send').capitalize, as: :button
-    f.cancel_link admin_role_path(resource.id), label: t('active_admin.label.cancel').capitalize, as: :button
+    if resource.id
+      f.cancel_link admin_role_path(resource.id), label: t('active_admin.label.cancel').capitalize, as: :button
+    else
+      f.cancel_link admin_roles_path, label: t('active_admin.label.cancel').capitalize, as: :button
+    end
   end
 end

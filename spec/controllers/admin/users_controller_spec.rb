@@ -18,4 +18,19 @@ describe Admin::UsersController, type: :controller do
     post :create, params: { user: @user_admin_second }
     expect { @user_admin_second.save }.to change { @scope_admins.count }.by(1)
   end
+  it 'returns success if request format is CSV' do
+    get :index, format: :csv
+    expect(response).to have_http_status(:success)
+    expect(response.header['Content-Type']).to include 'text/csv'
+  end
+  it 'returns success if request format is xml' do
+    get :index, format: :xml
+    expect(response).to have_http_status(:success)
+    expect(response.header['Content-Type']).to include 'application/xml'
+  end
+  it 'returns success if request format is JSON' do
+    get :index, format: :json
+    expect(response).to have_http_status(:success)
+    expect(response.header['Content-Type']).to include 'application/json'
+  end
 end

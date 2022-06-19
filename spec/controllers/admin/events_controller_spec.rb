@@ -1,13 +1,12 @@
+# frozen_string_literal: true
 
 describe Admin::EventsController, type: :controller do
-
   before(:each) do
     @user = FactoryBot.create(:user)
     @user_admin = FactoryBot.create(:user_admin)
     @event = FactoryBot.create(:event, user: @user)
     sign_in @user_admin
   end
-
   it 'создает новое задание' do
     post :create, params: { user: @user, event: @event }
     expect(Event.all.count).to eq(1)

@@ -7,6 +7,12 @@ FactoryBot.define do
     sequence(:email) { |n| "person#{n}@example#{rand(0..1000)}.com" }
     password { pass }
     role { create(:role) }
+    # role {  if Role.find_by(code: 'default')
+    #           Role.find_by(code: 'default')
+    #         else
+    #           create(:role)
+    #         end
+    #         }
     events_unffd_count { 0 }
     events_ffd_count { 0 }
     items_unffd_count { 0 }
@@ -18,6 +24,12 @@ FactoryBot.define do
       sequence(:email) { nil }
       password { pass }
       role { create(:role) }
+      # role {  if Role.find_by(code: 'default')
+      #           Role.find_by(code: 'default')
+      #         else
+      #           create(:role)
+      #         end
+      #          }
       events_unffd_count { 0 }
       events_ffd_count { 0 }
       items_unffd_count { 0 }
@@ -25,11 +37,17 @@ FactoryBot.define do
       comments_count { 0 }
     end
     factory :user_admin do
-      pass = 'admin@example.com'
-      name { "admin@example#{rand(0..1000)}.com" }
-      email { "admin@example#{rand(0..1000)}.com" }
+      pass = 'admin1@example.com'
+      name { "admin1@example#{rand(0..1000)}.com" }
+      email { "admin1@example#{rand(0..1000)}.com" }
       password { pass }
       role { create(:role_admin) }
+      # role {  if Role.find_by(code: 'admin')
+      #           Role.find_by(code: 'admin')
+      #         else
+      #           create(:role)
+      #         end
+      #          }
       events_unffd_count { 0 }
       events_ffd_count { 0 }
       items_unffd_count { 0 }

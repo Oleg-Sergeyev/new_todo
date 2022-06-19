@@ -12,7 +12,8 @@ ru:
     hello:            Привет, %s
     edit_profile:     Изменить данные
     registration:     Регистрация
-    role:             Права
+    role:             Роль
+    otchets:          отчеты
     create_new_event: Создать новое задание
     list_events:      Список основных заданий
     period:           Период
@@ -59,7 +60,8 @@ ru:
       events:  Задания
       item:    Подзадание
       items:   Подзадания
-      role:    Роль 
+      role:    Роль
+      roles:   Роли 
       seo:     СЕО
       comment: Коментарий
       stats:   Статистика

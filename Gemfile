@@ -77,6 +77,7 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'pundit-matchers', '~> 1.7.0'
 end
 
 group :development do
